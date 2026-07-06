@@ -1,0 +1,26 @@
+import type { Metadata } from "next"
+import { Hero } from "@/components/home/hero"
+import { StackMarquee } from "@/components/home/stack-marquee"
+import { ProjectsStack } from "@/components/home/projects-stack"
+import { Services } from "@/components/home/services"
+import { HighlightsCarousel } from "@/components/home/highlights-carousel"
+import { Diferenciais } from "@/components/home/diferenciais"
+import { CTA } from "@/components/home/cta"
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+}
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <StackMarquee />
+      <ProjectsStack />
+      <Services />
+      <HighlightsCarousel />
+      <Diferenciais />
+      <CTA />
+    </>
+  )
+}
