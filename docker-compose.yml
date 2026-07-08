@@ -1,11 +1,12 @@
 services:
-  landing-page:
+  portfolio:
     build: .
-    container_name: landing-page
+    container_name: portfolio-professional
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3004:3000"
     volumes:
       - .:/app
       - /app/node_modules
       - /app/.next
+

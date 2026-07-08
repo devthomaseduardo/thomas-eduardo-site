@@ -27,6 +27,9 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  if (pathname === "/linkbio") return null
+
+
   return (
     <header
       className={cn(

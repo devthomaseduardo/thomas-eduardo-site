@@ -1,10 +1,18 @@
+"use client"
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Mail } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/brand-icons"
 import { Logo } from "@/components/logo"
 
 export function SiteFooter() {
+  const pathname = usePathname()
+  
+  if (pathname === "/linkbio") return null
+
   return (
+
     <footer className="bg-background">
       <div className="mx-auto max-w-6xl px-5 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">

@@ -1,6 +1,6 @@
 export const CONTACT = {
   name: "Thomas Eduardo R. Nascimento",
-  role: "Desenvolvedor Full Stack",
+  role: "Software Engineer | Full Stack Developer",
   email: "devthomaseduardo@gmail.com",
   phone: "(11) 97707-0209",
   location: "São Paulo, SP",
@@ -12,6 +12,7 @@ export const CONTACT = {
   cnpj: "60.882.678/0001-77",
 }
 
+
 export type Project = {
   tag: string
   title: string
@@ -19,73 +20,122 @@ export type Project = {
   bullets: string[]
   stack: string[]
   image: string
+  href?: string
+  year?: string
 }
 
+
 export const PROJECTS: Project[] = [
+
   {
-    tag: "Auth",
-    title: "Auth JWT RBAC",
+    tag: "Produto Digital",
+    title: "Thomas Eduardo Portfolio",
     description:
-      "API de autenticação e permissões com cadastro, login, senha criptografada, refresh token e papéis de usuário.",
-    bullets: ["JWT + RBAC", "Rotas protegidas", "Prisma + PostgreSQL"],
-    stack: ["Node.js", "Fastify", "Prisma", "JWT"],
-    image: "/projects/gestao.png",
+      "Plataforma profissional desenvolvida para apresentar projetos, serviços e gerar novas oportunidades comerciais.",
+    bullets: [
+      "Arquitetura moderna",
+      "UX orientado a conversão",
+      "Performance otimizada",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+    ],
+    image: "/projects/portfolio.webp",
+    href: "https://thomaseduardo.online",
+    year: "2026",
   },
+
+
   {
-    tag: "Back-end",
-    title: "API Node.js em Servidor Linux",
-    description:
-      "Backend publicado em Linux com PM2, banco PostgreSQL, documentação de endpoints e validação de rotas.",
-    bullets: ["Deploy em Linux", "PM2 + Nginx", "APIs REST"],
-    stack: ["Node.js", "Linux", "PostgreSQL", "Docker"],
-    image: "/projects/automacao.png",
-  },
-  {
-    tag: "Micro-SaaS",
-    title: "PropostaLink",
-    description:
-      "Plataforma para criar propostas comerciais online, gerar link público e facilitar envio por WhatsApp.",
-    bullets: ["Templates de proposta", "Link público", "Fluxo comercial"],
-    stack: ["Next.js", "Prisma", "PostgreSQL", "Stripe"],
-    image: "/projects/landing.png",
-  },
-  {
-    tag: "Produto",
-    title: "ApplyPilot",
-    description:
-      "Copiloto de candidaturas planejado para monitorar vagas, ranquear oportunidades e gerar versões de currículo.",
-    bullets: ["Automação com Playwright", "Ranqueamento de vagas", "FastAPI"],
-    stack: ["Python", "FastAPI", "PostgreSQL", "Docker"],
-    image: "/projects/automacao.png",
-  },
-  {
-    tag: "Landing",
-    title: "Sleep House",
-    description:
-      "Landing comercial para loja de colchões, com catálogo, prova social, FAQ e estrutura de conversão por WhatsApp.",
-    bullets: ["Página rápida", "SEO técnico", "Conversão via WhatsApp"],
-    stack: ["Next.js", "Tailwind CSS", "shadcn/ui"],
-    image: "/projects/landing.png",
-  },
-  {
-    tag: "Landing",
+    tag: "Experiência Digital",
     title: "Homma Design",
     description:
-      "Landing premium para mobiliário autoral, com estética editorial, vídeos, prova social e contato direto.",
-    bullets: ["Direção visual editorial", "Performance", "Layout responsivo"],
-    stack: ["Next.js", "Tailwind CSS", "Vercel"],
-    image: "/projects/landing.png",
+      "Landing premium desenvolvida para mobiliário autoral, combinando estética editorial, narrativa visual e experiência de marca.",
+    bullets: [
+      "Direção visual premium",
+      "Performance otimizada",
+      "Design responsivo",
+    ],
+    stack: [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel",
+    ],
+    image: "/projects/homma-projetos.webp",
+    href:
+      "https://hommadesignvercelapp.vercel.app",
+    year: "2026",
   },
+
+
   {
-    tag: "Sistema",
-    title: "Portal do Cliente / Admin",
+    tag: "Backend API",
+    title: "Auth JWT RBAC",
     description:
-      "Sistema administrativo para operação comercial, com módulos de projetos, clientes, propostas, financeiro, contratos e leads.",
-    bullets: ["Dashboard administrativo", "Módulos internos", "Controle de acesso"],
-    stack: ["Next.js", "Node.js", "PostgreSQL", "Prisma"],
-    image: "/projects/mokup-hazap.png",
+      "API backend estruturada com autenticação segura e controle de acesso baseado em permissões.",
+    bullets: [
+      "Autenticação JWT",
+      "Controle de usuários",
+      "Arquitetura escalável",
+    ],
+    stack: [
+      "Node.js",
+      "Fastify",
+      "Prisma",
+      "PostgreSQL",
+    ],
+    image:
+      "/projects/auth-rbac.webp",
+    year: "2026",
   },
+
+
+  {
+    tag: "Inteligência Artificial",
+    title: "AI Agents Platform",
+    description:
+      "Projeto focado na criação de agentes inteligentes e automações utilizando inteligência artificial.",
+    bullets: [
+      "Arquitetura de agentes",
+      "Automação de processos",
+      "Integração com IA",
+    ],
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "AI",
+    ],
+    image:
+      "/projects/agents.webp",
+    year: "2026",
+  },
+
+
+  {
+    tag: "Conversão Digital",
+    title: "Sleep House Campinas",
+    description:
+      "Landing comercial criada para showroom de colchões com catálogo, prova social e geração de contatos.",
+    bullets: [
+      "SEO técnico",
+      "Experiência mobile",
+      "WhatsApp comercial",
+    ],
+    stack: [
+      "Next.js",
+      "Tailwind CSS",
+      "shadcn/ui",
+    ],
+    image:
+      "/projects/sleep-house-campinas.svg",
+    year: "2026",
+  },
+
 ]
+
+
 
 export type Service = {
   title: string
@@ -93,50 +143,136 @@ export type Service = {
   features: string[]
 }
 
+
+
 export const SERVICES: Service[] = [
+
   {
-    title: "Portais e Dashboards",
-    description: "Sistemas internos, painéis administrativos e ferramentas para organizar processos que hoje ficam soltos.",
-    features: ["Autenticação (JWT) e RBAC", "Dashboard administrativo", "Banco de dados estruturado"],
+    title: "Produtos Digitais e Sistemas",
+    description:
+      "Aplicações web completas para empresas que precisam organizar processos, automatizar tarefas e criar novas soluções digitais.",
+    features: [
+      "Dashboards administrativos",
+      "Autenticação e permissões",
+      "Banco de dados estruturado",
+    ],
   },
+
+
   {
     title: "Sites e Landing Pages",
-    description: "Páginas rápidas, claras e responsivas para apresentar ofertas, serviços e canais de contato com mais consistência.",
-    features: ["SEO técnico e performance", "Responsividade total", "Integração direta com WhatsApp"],
+    description:
+      "Experiências digitais rápidas e estratégicas para apresentar marcas, serviços e gerar novas oportunidades.",
+    features: [
+      "SEO técnico",
+      "Performance otimizada",
+      "Integração com WhatsApp",
+    ],
   },
+
+
   {
     title: "APIs e Back-end",
-    description: "APIs REST, autenticação, áreas administrativas, banco de dados e integrações para aplicações web reais.",
-    features: ["APIs REST e Webhooks", "Processamento em background", "Integração (Stripe, WhatsApp, etc)"],
+    description:
+      "Desenvolvimento de APIs, integrações e estruturas backend preparadas para aplicações reais.",
+    features: [
+      "APIs REST",
+      "Webhooks",
+      "Integrações externas",
+    ],
   },
+
 ]
+
+
 
 export const DIFERENCIAIS = [
+
   {
-    title: "Código limpo e previsível",
-    description: "Estrutura pensada para manter e evoluir, não só para funcionar no primeiro deploy.",
+    title: "Código limpo e preparado para evolução",
+    description:
+      "Estruturas organizadas para manutenção, crescimento e novas funcionalidades.",
   },
+
+
   {
     title: "Visão de produto",
-    description: "Cada decisão técnica considera o uso real da aplicação e o objetivo de negócio.",
+    description:
+      "Cada decisão técnica considera experiência do usuário e objetivo do negócio.",
   },
+
+
   {
-    title: "Full Stack de ponta a ponta",
-    description: "Da interface ao servidor, sem depender de terceiros para entregar valor.",
+    title: "Desenvolvimento Full Stack",
+    description:
+      "Da interface ao backend, criando soluções completas de ponta a ponta.",
   },
+
+
   {
-    title: "Entrega incremental",
-    description: "Escopo organizado em etapas, com evolução clara entre interface, API, banco e deploy.",
+    title: "Entrega organizada",
+    description:
+      "Processo dividido em etapas claras desde planejamento até publicação.",
   },
+
 ]
+
+
 
 export const PROCESS = [
-  { step: "01", title: "Entendimento do problema", description: "Antes de código, entendo o objetivo real e o processo atual." },
-  { step: "02", title: "Arquitetura e planejamento", description: "Defino escopo técnico, stack e a estrutura que vai escalar." },
-  { step: "03", title: "Desenvolvimento e entrega", description: "Construção incremental, deploy e documentação para evoluir." },
+
+  {
+    step: "01",
+    title: "Entendimento",
+    description:
+      "Analiso o problema, objetivo e processo atual antes de iniciar o desenvolvimento.",
+  },
+
+
+  {
+    step: "02",
+    title: "Arquitetura",
+    description:
+      "Defino tecnologia, estrutura e estratégia para criar uma solução sustentável.",
+  },
+
+
+  {
+    step: "03",
+    title: "Desenvolvimento",
+    description:
+      "Construção incremental, testes, deploy e evolução contínua.",
+  },
+
 ]
 
+
+
 export const STACK = [
-  "React", "Next.js", "TypeScript", "Node.js", "Fastify", "Express",
-  "PostgreSQL", "Prisma", "Docker", "Linux", "Vercel", "JWT", "Tailwind CSS", "Python",
+
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Fastify",
+  "Express",
+  "PostgreSQL",
+  "Prisma",
+  "Docker",
+  "Linux",
+  "AWS",
+  "Vercel",
+  "JWT",
+  "Tailwind CSS",
+  "Python",
+
+]
+export const CLIENTS = [
+  { name: "Academia Spinmove", logo: "/projects/academia-spinmove.svg" },
+  { name: "Gil Barbosa", logo: "/projects/gilbarbosa.svg" },
+  { name: "Hazap Workstation", logo: "/projects/hazap-workstation.svg" },
+  { name: "Instituto Kell", logo: "/projects/intituto-kell.svg" },
+  { name: "Paper Contratos", logo: "/projects/paper-contratos.svg" },
+  { name: "Sleep House Campinas", logo: "/projects/sleep-house-campinas.svg" },
+  { name: "Yazigi Swiss Park", logo: "/projects/yagizi-swissparck.svg" },
 ]
