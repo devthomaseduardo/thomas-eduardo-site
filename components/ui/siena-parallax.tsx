@@ -56,7 +56,7 @@ export function SienaParallax({ imageSrc, title, subtitle, eyebrow }: SienaParal
           style={{ scale: textScale, opacity: textOpacity }}
           className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-blue-400/80 mb-4 block">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/55/80 mb-4 block">
             {eyebrow}
           </span>
           <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-white leading-[1.05] mb-6">

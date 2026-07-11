@@ -1,17 +1,34 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google"
+import { Inter, Syne, JetBrains_Mono } from "next/font/google"
 import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SiteNav } from "@/components/site-nav"
 import { SiteFooter } from "@/components/site-footer"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
+import { CustomCursor } from "@/components/ui/custom-cursor"
+import { PageLoader } from "@/components/ui/page-loader"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
-const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" })
+// nik.co vibe: Suisse Int'l → Inter (body), Heathergreen → Syne (display)
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-geist",
+  weight: ["300", "400", "500", "600", "700"],
+})
+// Display: Syne (statement type, closest free feel to Heathergreen energy)
+const display = Syne({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["500", "600", "700", "800"],
+})
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  weight: ["400", "500"],
+})
 
 const signature = localFont({
   src: "../public/fonts/ShadowHand.ttf",
@@ -41,7 +58,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-// JSON-LD estruturado
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -57,7 +73,7 @@ const jsonLd = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#000000",
   colorScheme: "dark",
 }
 
@@ -69,21 +85,29 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`dark ${geist.variable} ${geistMono.variable} ${display.variable} ${signature.variable} bg-background`}
+      className={`dark ${inter.variable} ${mono.variable} ${display.variable} ${signature.variable} bg-background`}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('loader-boot','loader-active')`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased overflow-x-hidden" suppressHydrationWarning={true}>
+      <body className="font-sans font-light antialiased overflow-x-hidden" suppressHydrationWarning={true}>
         <SmoothScroll>
+          <PageLoader />
+          <CustomCursor />
           <SiteNav />
           <main>{children}</main>
           <FloatingWhatsApp />
           <SiteFooter />
-          {process.env.NODE_ENV === "production" && <Analytics />}
+          <Analytics />
+          <SpeedInsights />
         </SmoothScroll>
       </body>
     </html>

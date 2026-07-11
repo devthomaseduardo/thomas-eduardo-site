@@ -3,78 +3,81 @@
 import { ENGINEERING_APPROACH } from "@/lib/data"
 import { Search, Network, Code, TestTube, Rocket, IterationCcw } from "lucide-react"
 import { motion } from "framer-motion"
+import { MobileCarousel } from "@/components/ui/mobile-carousel"
 
 const ICONS = [Search, Network, Code, TestTube, Rocket, IterationCcw]
 
 export function EngineeringApproach() {
   return (
-    <section id="engineering" className="relative py-24 sm:py-48 bg-background overflow-hidden">
-      
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        <div className="mb-20 md:mb-32 max-w-3xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+    <section
+      id="engineering"
+      className="relative overflow-hidden bg-background py-10 sm:py-16 md:py-20"
+    >
+      <div className="site-shell">
+        <div className="mb-5 max-w-2xl sm:mb-10">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-6xl"
+            className="label-kicker mb-2 sm:mb-3"
           >
-            Filosofia de Engenharia.
+            Processo
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-h2 text-foreground"
+          >
+            Filosofia de engenharia.
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-6 text-xl text-muted-foreground leading-relaxed"
+            className="copy-desktop mt-3 text-base font-light leading-relaxed text-muted-foreground sm:text-lg"
           >
-            Engenharia de software é mais do que escrever código. É entender o problema,
-            projetar arquiteturas resilientes e estabelecer pipelines de entrega confiáveis.
+            Entender o problema, projetar com clareza e entregar com confiabilidade.
           </motion.p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <MobileCarousel
+          itemClassName="w-[min(82vw,20rem)]"
+          desktopClassName="sm:grid sm:grid-cols-2 sm:gap-3 lg:grid-cols-3"
+        >
           {ENGINEERING_APPROACH.map((item, i) => {
             const Icon = ICONS[i] || Code
             return (
-              <motion.div
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative flex flex-col h-full rounded-[2rem] bg-card/40 border border-border/40 p-8 transition-all hover:bg-card hover:border-blue-500/30 hover:shadow-2xl hover:-translate-y-2"
+                className="group relative flex h-full min-h-[11.5rem] flex-col rounded-xl border border-border/20 bg-transparent p-4 transition-colors hover:border-white/15 hover:bg-white/[0.02] sm:min-h-0 sm:rounded-2xl sm:p-5 md:p-6"
               >
-                
-                <div className="mb-6 inline-flex items-center justify-between">
-                  <div className="flex size-14 items-center justify-center rounded-[1rem] bg-secondary/30 text-foreground transition-transform group-hover:scale-110 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]">
-                    <Icon className="size-6" />
+                <div className="mb-3 flex items-center justify-between sm:mb-4">
+                  <div className="flex size-9 items-center justify-center rounded-lg bg-secondary/50 text-foreground/80 sm:size-10 sm:rounded-xl">
+                    <Icon className="size-4" />
                   </div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground/30">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/35">
                     0{i + 1}
                   </span>
                 </div>
-                
-                <h3 className="font-display text-2xl font-medium tracking-tight text-foreground">
+
+                <h3 className="font-display text-base font-semibold uppercase tracking-[0.02em] text-foreground sm:text-lg">
                   {item.title}
                 </h3>
-                
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+
+                <p className="mt-1.5 text-sm font-light leading-relaxed text-muted-foreground sm:mt-2">
                   {item.description}
                 </p>
-                
-                <div className="mt-auto pt-8">
-                  <p className="border-t border-border/20 pt-5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground/60">
+
+                <div className="mt-auto hidden pt-5 sm:block">
+                  <p className="border-t border-border/20 pt-3 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/50">
                     {item.detail}
                   </p>
                 </div>
-
-              </motion.div>
+              </div>
             )
           })}
-        </div>
-
+        </MobileCarousel>
       </div>
     </section>
   )

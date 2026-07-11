@@ -2,110 +2,96 @@
 
 import { useRef } from "react"
 import Image from "next/image"
-import { ArrowUpRight, ExternalLink } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { TechIconRow } from "@/components/tech-icon"
-
 import { PROJECTS } from "@/lib/data"
+import { CtaLink } from "@/components/ui/cta"
 
-export function ProjectCard({ project, index }: { project: (typeof PROJECTS)[0]; index: number }) {
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof PROJECTS)[0]
+  index: number
+}) {
   const cardRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "start start"],
   })
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1])
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [0, 1])
-  const top = `calc(10vh + ${index * 40}px)`
+  const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1])
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0.6, 1])
 
   return (
     <motion.div
       ref={cardRef}
-      style={{ scale, opacity, top }}
-      className="sticky w-full max-w-7xl mx-auto mb-24 lg:mb-32 overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] bg-card border border-border/40 shadow-2xl"
+      style={{ scale, opacity }}
+      className="w-full overflow-hidden rounded-xl border border-border/20 bg-transparent sm:rounded-2xl"
     >
-      <div className="grid lg:grid-cols-2 min-h-[520px]">
-        
-        {/* — Lado imagem (dominante) — */}
-        <div className="relative h-[50vw] sm:h-[40vw] lg:h-full min-h-[320px] overflow-hidden order-1">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative order-1 h-44 overflow-hidden sm:h-56 lg:h-auto lg:min-h-[300px]">
           <Image
             src={project.image || "/placeholder.svg"}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-700 hover:scale-105"
+            className="object-cover transition-transform duration-700 hover:scale-[1.03]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          {/* Overlay gradiente sutil */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          
-          {/* Tag no canto superior esquerdo */}
-          <div className="absolute top-5 left-5">
-            <span className="rounded-full bg-black/60 backdrop-blur-md px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/80 border border-white/10">
-              {String(index + 1).padStart(2, "0")} · {project.tag}
+
+          <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
+            <span className="rounded-full border border-white/10 bg-black/55 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-white/75 backdrop-blur-md sm:px-3 sm:text-[10px]">
+              {String(index + 1).padStart(2, "0")}
+              <span className="hidden sm:inline"> · {project.tag}</span>
             </span>
           </div>
 
-          {/* Ano */}
           {project.year && (
-            <div className="absolute bottom-5 right-5">
-              <span className="rounded-full bg-black/60 backdrop-blur-md px-3 py-1 font-mono text-xs text-white/60 border border-white/10">
+            <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4">
+              <span className="rounded-full border border-white/10 bg-black/55 px-2 py-0.5 font-mono text-[10px] text-white/55 backdrop-blur-md sm:px-2.5 sm:py-1 sm:text-[11px]">
                 {project.year}
               </span>
             </div>
           )}
         </div>
 
-        {/* — Lado conteúdo — */}
-        <div className="flex flex-col justify-between p-8 sm:p-12 lg:p-14 order-2">
-          
+        <div className="order-2 flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10">
           <div>
-            <h3 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            <h3 className="font-display text-xl font-semibold uppercase tracking-[0.02em] text-foreground sm:text-2xl md:text-3xl">
               {project.title}
             </h3>
-            <p className="mt-2 text-lg text-muted-foreground">
+            <p className="mt-1 text-xs font-light text-muted-foreground sm:mt-1.5 sm:text-sm md:text-base">
               {project.subtitle}
             </p>
 
-            <p className="mt-6 text-base leading-relaxed text-foreground/75">
+            {/* Long text desktop only */}
+            <p className="copy-desktop mt-4 text-sm leading-relaxed text-foreground/70 sm:text-[15px]">
               {project.description}
             </p>
 
-            {/* Resultado em destaque (sem card interno conforme pedido) */}
-            <div className="mt-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-2">
-                Resultado
-              </p>
-              <p className="text-sm leading-relaxed text-foreground/80">
+            <div className="copy-desktop mt-5">
+              <p className="label-kicker mb-1.5">Resultado</p>
+              <p className="text-sm leading-relaxed text-foreground/75">
                 {project.result}
               </p>
             </div>
           </div>
 
-          <div className="mt-8">
-            {/* Ícones reais das tecnologias */}
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-3">
-              Tecnologias
-            </p>
-            <TechIconRow stack={project.stack} max={7} />
+          <div className="mt-4 sm:mt-6">
+            <p className="label-kicker mb-2 hidden sm:block">Tecnologias</p>
+            <div className="hidden sm:block">
+              <TechIconRow stack={project.stack} max={7} />
+            </div>
 
-            {/* CTA */}
             {project.href && (
-              <div className="mt-8">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link inline-flex items-center gap-2 rounded-full border border-border/50 bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-transform hover:scale-105"
-                >
-                  <ExternalLink className="size-4" />
-                  Ver projeto online
-                  <ArrowUpRight className="size-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                </a>
+              <div className="mt-3 sm:mt-6">
+                <CtaLink href={project.href} variant="soft" size="sm" external>
+                  Ver projeto
+                </CtaLink>
               </div>
             )}
           </div>
-
         </div>
       </div>
     </motion.div>

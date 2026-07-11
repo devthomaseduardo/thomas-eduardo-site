@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal"
 
 export function Clients() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-16 sm:py-24">
+    <section className="relative site-shell py-16 sm:py-24">
 
       <Reveal>
         <div className="mb-12 text-center">

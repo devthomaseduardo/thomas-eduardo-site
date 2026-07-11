@@ -49,7 +49,7 @@ export function StackMarquee() {
         aria-hidden
       />
 
-      <div className="mx-auto mb-7 flex max-w-6xl items-center justify-between px-5">
+      <div className="site-shell mb-7 flex items-center justify-between">
         <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)]" />
           Stack

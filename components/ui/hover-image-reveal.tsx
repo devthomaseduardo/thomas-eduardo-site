@@ -60,7 +60,7 @@ export function HoverImageReveal({ items, title = "Outros trabalhos.", eyebrow =
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setHoveredIndex(null)}
-      className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 overflow-hidden"
+      className="relative site-shell py-24 sm:py-32 overflow-hidden"
     >
       <div className="mb-16">
         <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground block mb-3">

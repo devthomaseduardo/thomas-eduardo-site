@@ -56,7 +56,7 @@ export function HighlightsCarousel() {
 
 <div className="
 mx-auto
-max-w-6xl
+max-w-[90rem]
 px-5
 py-20
 ">

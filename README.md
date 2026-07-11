@@ -1,63 +1,123 @@
-# Portfólio Profissional - Engenharia de Software
+# Thomas Eduardo — Portfolio
 
-Este é o repositório do meu portfólio profissional de Engenharia de Software, focado em demonstrar minhas habilidades como **Product Engineer**. O projeto possui uma estética premium em dark-mode, projetada para destacar estudos de caso detalhados, arquitetura de sistemas, capacidades full-stack e processos de entrega ponta-a-ponta (end-to-end).
+Site pessoal e portfólio de **Thomas Eduardo**, Product Engineer / Full Stack em São Paulo.
 
-## 🚀 Tecnologias Utilizadas
+**Produção:** [thomaseduardo.online](https://thomaseduardo.online)
 
-O projeto foi construído utilizando as tecnologias mais modernas do ecossistema front-end para garantir altíssima performance, acessibilidade e uma experiência de usuário (UX) cinemática.
+---
 
-- **[Next.js](https://nextjs.org/)** (v16) - Framework React para renderização híbrida, SSG e SSR.
-- **[React](https://react.dev/)** (v19) - Biblioteca JavaScript para construção de interfaces.
-- **[Tailwind CSS](https://tailwindcss.com/)** (v4) - Framework CSS utilitário para estilização rápida e responsiva.
-- **[Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)** - Bibliotecas de animação para interações dinâmicas e efeitos parallax fluidos.
-- **[Lenis](https://lenis.studiofreight.com/)** - Scroll suave (smooth scrolling) para uma experiência de navegação premium.
-- **[Shadcn UI](https://ui.shadcn.com/)** - Componentes de interface acessíveis e customizáveis.
-- **[Lucide React](https://lucide.dev/)** & **[Iconify](https://iconify.design/)** - Ícones limpos e modernos.
-- **[Swiper](https://swiperjs.com/)** - Carrosséis e galerias interativas (touch-enabled).
-- **TypeScript** - Tipagem estática para código mais seguro e previsível.
+## Stack
 
-## ⚙️ Pré-requisitos
+| Camada | Tecnologia |
+|--------|------------|
+| Framework | Next.js 16 (App Router) |
+| UI | React 19, Tailwind CSS 4, shadcn/ui |
+| Animação | Framer Motion, GSAP, Lenis |
+| Ícones | Lucide, Iconify |
+| Carrosséis | Swiper + carrossel mobile custom (scroll-snap) |
+| Analytics | Vercel Analytics + Speed Insights |
+| Deploy | Vercel |
 
-Certifique-se de ter o **[Node.js](https://nodejs.org/)** (v18+) e o **[pnpm](https://pnpm.io/)** instalados em sua máquina.
+---
 
-## 🛠️ Como Rodar o Projeto Localmente
+## Funcionalidades
 
-1. **Clone o repositório:**
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd portfolio-professional
-   ```
+- **Home** — hero com vídeo + TextPressure, projetos, processo, stack, galeria
+- **Sobre** — layout bento, métricas, timeline, certificações
+- **Projetos** — cases com stack e resultados
+- **Valores** — processo comercial e FAQ
+- **Linkbio** (`/linkbio`) — hub de links para redes
+- **Currículo** (`/curriculo`) — visualização e download do PDF (`/curriculo.pdf`)
+- **Redirects** (`/r/[slug]`) — links curtos com tracking (ex.: `/r/wa`, `/r/github`)
+- **Proposta** (`/proposta`) — páginas privadas de proposta (noindex)
+- **UI** — cursor custom (desktop), loader de entrada, WhatsApp flutuante com CircularText
+- **Mobile** — seções em carrossel horizontal para reduzir rolagem
 
-2. **Instale as dependências:**
-   O gerenciador de pacotes padrão deste projeto é o `pnpm`.
-   ```bash
-   pnpm install
-   ```
+---
 
-3. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   pnpm dev
-   ```
+## Rotas principais
 
-4. **Acesse no navegador:**
-   Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o portfólio em execução.
+| Rota | Descrição |
+|------|-----------|
+| `/` | Home |
+| `/sobre` | Sobre + métricas |
+| `/projetos` | Projetos |
+| `/valores` | Processo e valores |
+| `/linkbio` | Links sociais |
+| `/curriculo` | CV em PDF |
+| `/r` | Índice de redirects |
+| `/r/wa` | WhatsApp (tracked) |
+| `/proposta` | Proposta comercial (privada) |
 
-## 🏗️ Estrutura do Projeto
+---
 
-- `/app`: Diretório principal do Next.js App Router (páginas, layouts, roteamento).
-- `/components`: Componentes reutilizáveis de UI (ex: `hero.tsx`, botões, seções da página).
-- `/lib`: Utilitários, configurações gerais e mock de dados (`data.ts`).
-- `/public`: Arquivos estáticos (imagens, fontes, ícones).
+## Desenvolvimento local
 
-## ✨ Funcionalidades em Destaque
+**Requisitos:** Node.js 18+ e [pnpm](https://pnpm.io/)
 
-- **Design Cinemático:** Estética sofisticada e minimalista voltada para profissionais de tecnologia.
-- **Scroll Suave (Smooth Scroll):** Implementado via Lenis para dar mais peso e elegância à navegação.
-- **Animações e Efeitos Parallax:** Utilizando GSAP e Framer Motion para dar vida aos estudos de caso e imagens.
-- **Totalmente Responsivo:** Adaptado perfeitamente para dispositivos móveis, tablets e telas ultrawide.
-- **Otimizado para SEO e Performance:** Usando os melhores recursos de otimização nativa do Next.js.
-- **Pronto para Deploy:** Pipeline de CI/CD via GitHub Actions e exportação estática configurados.
+```bash
+git clone https://github.com/devthomaseduardo/thomas-eduardo-site.git
+cd thomas-eduardo-site
+pnpm install
+pnpm dev
+```
 
-## 📄 Licença
+Abra [http://localhost:3000](http://localhost:3000).
 
-Este projeto é de uso pessoal. Todos os direitos reservados.
+### Scripts
+
+```bash
+pnpm dev      # servidor de desenvolvimento
+pnpm build    # build de produção
+pnpm start    # serve o build
+pnpm lint     # ESLint
+```
+
+---
+
+## Estrutura
+
+```
+app/                 # App Router (páginas e layouts)
+  r/[slug]/          # redirects com analytics
+  curriculo/         # viewer do PDF
+  linkbio/           # hub de links
+  sobre|projetos|valores/
+components/
+  home/              # seções da home
+  ui/                # primitives (cursor, loader, carousels, etc.)
+lib/
+  data.ts            # projetos, contato
+  redirects.ts       # mapa de /r/*
+public/
+  curriculo.pdf      # CV oficial
+  hero.mp4           # vídeo do hero
+  projects/          # imagens dos cases
+```
+
+---
+
+## Deploy
+
+O repositório está preparado para deploy na **Vercel** (push em `main` dispara o pipeline, se o projeto estiver linkado).
+
+```bash
+# build local de verificação
+pnpm build
+```
+
+Variáveis de ambiente: nenhuma obrigatória para o site estático/SSR padrão. Analytics e Speed Insights funcionam no ambiente Vercel.
+
+---
+
+## SEO e privacidade
+
+- Páginas públicas indexáveis: home, sobre, projetos, valores
+- **Noindex:** `/proposta`, `/r/*`, `/curriculo` (documento utilitário)
+- JSON-LD Person no layout raiz
+
+---
+
+## Licença
+
+Uso pessoal. Todos os direitos reservados © Thomas Eduardo.

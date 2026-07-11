@@ -1,125 +1,90 @@
 "use client"
 
-import { useRef, useEffect } from "react"
-import Image from "next/image"
-import { ArrowDown } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { CONTACT } from "@/lib/data"
+import { useEffect, useRef } from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import TextPressure from "@/components/ui/text-pressure"
 
+/**
+ * Video + name only. No slogan, no buttons.
+ * Left / bottom — personal brand over atmosphere.
+ * Name uses React Bits TextPressure (hero only).
+ */
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.6 // Deixa o vídeo mais lento
-    }
-  }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
-
-  // Efeito Parallax e Revelação (Siena Parallax)
-  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 1.15])
-  const yVideo = useTransform(scrollYProgress, [0, 1], [0, 100])
-  const maskRadius = useTransform(scrollYProgress, [0, 0.7], ["30%", "100%"])
-  const clipPathString = useTransform(maskRadius, (r) => `circle(${r} at 50% 50%)`)
-
-  // O texto começa invisível (opacity 0) e surge somente quando a máscara expande (entre 25% e 55% de scroll)
-  // Depois, desvanece suavemente ao continuar rolando (entre 75% e 100%)
-  const opacityText = useTransform(scrollYProgress, [0, 0.25, 0.55, 0.75, 1], [0, 0, 1, 1, 0])
-  const yText = useTransform(scrollYProgress, [0.25, 0.55], [40, 0])
-
-  // Animação do card portrait - também surge após a expansão do vídeo
-  const opacityPortrait = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8], [0, 0, 1, 0])
-  const scalePortrait = useTransform(scrollYProgress, [0, 0.3, 0.6], [0.8, 0.8, 1])
+    const v = videoRef.current
+    if (!v || reduceMotion) return
+    v.playbackRate = 0.65
+    void v.play().catch(() => {})
+  }, [reduceMotion])
 
   return (
-    <div ref={containerRef} className="relative h-[110vh] sm:h-[150vh] w-full bg-background">
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+    <section className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-black">
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          src="/hero.mp4"
+          poster="/hero-poster.jpg"
+          autoPlay={!reduceMotion}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-60 sm:opacity-55"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-black/35 sm:bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
+      </div>
 
-        {/* Vídeo de fundo com máscara radial dinâmica (Siena Parallax) */}
-        <motion.div
-          style={{ clipPath: clipPathString }}
-          className="absolute inset-0 z-0 select-none pointer-events-none"
-        >
-          <motion.div
-            style={{ y: yVideo, scale }}
-            className="relative h-full w-full bg-black"
-          >
-            <video
-              ref={videoRef}
-              src="/hero.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 h-full w-full object-cover brightness-[0.8] contrast-[1.05]"
-            />
-            {/* Vinheta super leve apenas para as bordas não ficarem duras */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
-          </motion.div>
-        </motion.div>
-
-        {/* Floating portrait card — bottom right */}
-        <motion.div
-          style={{ opacity: opacityPortrait, scale: scalePortrait }}
-          className="absolute bottom-10 right-6 z-20 hidden lg:block"
-        >
-          <div className="relative h-48 w-36 overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/40 shadow-2xl backdrop-blur-sm">
-            <Image
-              src="/portrait.png"
-              alt={CONTACT.name}
-              fill
-              className="object-cover object-top"
-              sizes="144px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3">
-              <p className="font-mono text-[9px] uppercase tracking-widest text-white/70">São Paulo, BR</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Textos Centralizados no Hero (surgem depois da máscara circular abrir) */}
-        <motion.div
-          style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 flex flex-col items-start justify-center h-full text-left"
-        >
-          {/* Headline */}
-          <h1 className="font-display text-[2.5rem] font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl leading-[1.02] max-w-5xl">
-            Criando produtos digitais <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">com precisão.</span>
-          </h1>
-
-          {/* Container para o texto conforme solicitado */}
-          <div className="mt-6 sm:mt-8 max-w-xl rounded-[1.5rem] border border-white/10 bg-black/40 p-5 sm:p-6 backdrop-blur-md shadow-2xl">
-            <p className="text-sm sm:text-lg text-white/80 leading-relaxed font-light">
-              Arquitetura escalável, performance excepcional e foco em resultados de negócios reais.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Scroll indicator (visível inicialmente para convidar o scroll) */}
-        <motion.div
+      <div className="site-shell relative z-10 w-full pb-[max(4.5rem,env(safe-area-inset-bottom)+3.25rem)] pt-24 sm:pb-20 md:pb-24">
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          style={{
-            opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]),
-            pointerEvents: "none"
-          }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-3 text-[10px] font-light uppercase tracking-[0.22em] text-white/65 sm:mb-4 sm:text-[11px]"
         >
-          <div className="flex flex-col items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-white/30">Rolar para revelar</span>
-            <ArrowDown className="size-4 animate-bounce text-white/30" />
+          Product Engineer · SP
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          className="w-full max-w-[min(100%,42rem)]"
+        >
+          <h1 className="sr-only">Thomas Eduardo</h1>
+          <div className="relative h-[clamp(2.75rem,11vw,6.5rem)] w-full" aria-hidden>
+            <TextPressure
+              text="Thomas"
+              flex
+              alpha={false}
+              stroke={false}
+              width
+              weight
+              italic
+              textColor="#ffffff"
+              minFontSize={36}
+            />
+          </div>
+          <div className="relative h-[clamp(2.75rem,11vw,6.5rem)] w-full" aria-hidden>
+            <TextPressure
+              text="Eduardo"
+              flex
+              alpha={false}
+              stroke={false}
+              width
+              weight
+              italic
+              textColor="rgba(255,255,255,0.72)"
+              minFontSize={36}
+            />
           </div>
         </motion.div>
-
       </div>
-    </div>
+    </section>
   )
-}  
+}

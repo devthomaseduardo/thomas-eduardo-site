@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal"
 
 export function Diferenciais() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-16 sm:py-32">
+    <section className="site-shell py-16 sm:py-32">
       <div className="grid gap-12 sm:gap-16 lg:grid-cols-2">
         <div>
           <SectionHeading kicker="O que eu resolvo" title="Problemas que viram sistema" />

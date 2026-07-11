@@ -3,116 +3,148 @@
 import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 
+/**
+ * Light cursor — soft luminous glow that follows the pointer.
+ * Expands on interactive hover. Disabled on touch / reduced motion.
+ */
 export function CustomCursor() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const [isClicking, setIsClicking] = useState(false)
+  const [enabled, setEnabled] = useState(false)
+  const [hover, setHover] = useState(false)
+  const [click, setClick] = useState(false)
+  const [hidden, setHidden] = useState(false)
 
-  const cursorX = useMotionValue(-100)
-  const cursorY = useMotionValue(-100)
+  const x = useMotionValue(-200)
+  const y = useMotionValue(-200)
 
-  // Configuração de mola (spring) para o anel externo seguir o cursor com suavização física
-  const springConfig = { damping: 30, stiffness: 250, mass: 0.5 }
-  const cursorRingX = useSpring(cursorX, springConfig)
-  const cursorRingY = useSpring(cursorY, springConfig)
+  // Smooth lag for the light body
+  const spring = { damping: 32, stiffness: 220, mass: 0.4 }
+  const lightX = useSpring(x, spring)
+  const lightY = useSpring(y, spring)
+
+  // Core follows a bit snappier
+  const coreX = useSpring(x, { damping: 40, stiffness: 500, mass: 0.2 })
+  const coreY = useSpring(y, { damping: 40, stiffness: 500, mass: 0.2 })
 
   useEffect(() => {
-    // Detecta se é dispositivo móvel/touch (desativa cursor customizado)
-    const isTouchDevice = () => {
-      return (
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0
-      )
-    }
+    const fine = window.matchMedia("(pointer: fine)").matches
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const touch = "ontouchstart" in window || navigator.maxTouchPoints > 0
+    if (!fine || touch || reduce) return
 
-    if (isTouchDevice()) {
-      return
-    }
-
-    setIsVisible(true)
-
-    // Ativa ocultação do cursor original do navegador
+    setEnabled(true)
     document.documentElement.classList.add("custom-cursor-active")
 
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
+    const onMove = (e: MouseEvent) => {
+      x.set(e.clientX)
+      y.set(e.clientY)
+    }
+    const onDown = () => setClick(true)
+    const onUp = () => setClick(false)
+    const onLeave = () => setHidden(true)
+    const onEnter = () => setHidden(false)
+
+    const onOver = (e: MouseEvent) => {
+      const el = e.target as HTMLElement | null
+      if (!el) return
+      const interactive = el.closest(
+        "a, button, [role='button'], input, textarea, select, label, .btn-cta, .btn-solid-pill, .btn-outline-pill, .clickable, [data-cursor]",
+      )
+      setHover(!!interactive)
     }
 
-    const handleMouseDown = () => setIsClicking(true)
-    const handleMouseUp = () => setIsClicking(false)
-
-    // Detecta hover em botões, links, carrosséis e cards
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null
-      if (!target) return
-
-      // Verifica se o elemento ou seus pais são clicáveis/interativos
-      const isInteractive = 
-        target.tagName === "A" || 
-        target.tagName === "BUTTON" || 
-        target.closest("a") || 
-        target.closest("button") || 
-        target.closest(".btn-animate") ||
-        target.closest(".card-animate") ||
-        target.closest(".diferencial-card") ||
-        target.closest(".timeline-item") ||
-        target.classList.contains("clickable") ||
-        window.getComputedStyle(target).cursor === "pointer"
-
-      setIsHovered(!!isInteractive)
-    }
-
-    window.addEventListener("mousemove", moveCursor)
-    window.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mouseup", handleMouseUp)
-    window.addEventListener("mouseover", handleMouseOver)
+    window.addEventListener("mousemove", onMove, { passive: true })
+    window.addEventListener("mousedown", onDown)
+    window.addEventListener("mouseup", onUp)
+    window.addEventListener("mouseover", onOver)
+    document.addEventListener("mouseleave", onLeave)
+    document.addEventListener("mouseenter", onEnter)
 
     return () => {
       document.documentElement.classList.remove("custom-cursor-active")
-      window.removeEventListener("mousemove", moveCursor)
-      window.removeEventListener("mousedown", handleMouseDown)
-      window.removeEventListener("mouseup", handleMouseUp)
-      window.removeEventListener("mouseover", handleMouseOver)
+      window.removeEventListener("mousemove", onMove)
+      window.removeEventListener("mousedown", onDown)
+      window.removeEventListener("mouseup", onUp)
+      window.removeEventListener("mouseover", onOver)
+      document.removeEventListener("mouseleave", onLeave)
+      document.removeEventListener("mouseenter", onEnter)
     }
-  }, [cursorX, cursorY])
+  }, [x, y])
 
-  if (!isVisible) return null
+  if (!enabled) return null
+
+  const glow = hover ? (click ? 120 : 160) : click ? 70 : 110
+  const core = hover ? (click ? 6 : 8) : click ? 4 : 5
 
   return (
-    <>
-      {/* Ponto central (firme, segue o mouse imediatamente) */}
+    <div
+      className="pointer-events-none fixed inset-0 z-[9999] hidden md:block"
+      aria-hidden
+      style={{
+        opacity: hidden ? 0 : 1,
+        transition: "opacity 0.25s ease",
+      }}
+    >
+      {/* Soft ambient light */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference"
+        className="absolute top-0 left-0 rounded-full"
         style={{
-          x: cursorX,
-          y: cursorY,
+          x: lightX,
+          y: lightY,
           translateX: "-50%",
           translateY: "-50%",
+          width: glow,
+          height: glow,
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 35%, rgba(255,255,255,0) 70%)",
+          filter: "blur(2px)",
         }}
+        animate={{
+          width: glow,
+          height: glow,
+          opacity: hover ? 1 : 0.85,
+          scale: click ? 0.9 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 280, damping: 28 }}
       />
 
-      {/* Anel externo (suave, reage ao clique e hover) */}
+      {/* Mid halo */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-white pointer-events-none z-[9998] mix-blend-difference"
+        className="absolute top-0 left-0 rounded-full"
         style={{
-          x: cursorRingX,
-          y: cursorRingY,
+          x: lightX,
+          y: lightY,
+          translateX: "-50%",
+          translateY: "-50%",
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.12) 40%, transparent 70%)",
+        }}
+        animate={{
+          width: hover ? 48 : 32,
+          height: hover ? 48 : 32,
+          opacity: hover ? 0.95 : 0.7,
+          scale: click ? 0.85 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 360, damping: 24 }}
+      />
+
+      {/* Bright core */}
+      <motion.div
+        className="absolute top-0 left-0 rounded-full bg-white shadow-[0_0_20px_8px_rgba(255,255,255,0.35)]"
+        style={{
+          x: coreX,
+          y: coreY,
           translateX: "-50%",
           translateY: "-50%",
         }}
         animate={{
-          width: isHovered ? (isClicking ? 48 : 56) : (isClicking ? 20 : 32),
-          height: isHovered ? (isClicking ? 48 : 56) : (isClicking ? 20 : 32),
-          backgroundColor: isHovered ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)",
-          borderColor: isHovered ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.4)",
+          width: core,
+          height: core,
+          boxShadow: hover
+            ? "0 0 28px 12px rgba(255,255,255,0.45)"
+            : "0 0 18px 8px rgba(255,255,255,0.3)",
         }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 28,
-        }}
+        transition={{ type: "spring", stiffness: 500, damping: 28 }}
       />
-    </>
+    </div>
   )
 }

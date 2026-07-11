@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal"
 export function Services() {
   return (
     <section id="servicos" className="bg-card/20">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:py-32">
+      <div className="site-shell py-16 sm:py-32">
         <SectionHeading
           kicker="Soluções"
           title="Soluções que eu construo"

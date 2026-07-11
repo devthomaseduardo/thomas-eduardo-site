@@ -3,7 +3,7 @@ import { Reveal } from "@/components/reveal"
 
 export function Process() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-20 sm:py-36">
+    <section className="relative site-shell py-20 sm:py-36">
 
       <Reveal>
         <div className="mb-16 sm:mb-20">

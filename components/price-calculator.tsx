@@ -25,12 +25,12 @@ export function PriceCalculator() {
 
   return (
     <div className="rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-xl p-7 sm:p-9 shadow-2xl">
-      <p className="font-mono text-xs uppercase tracking-[0.3em] text-blue-400">Simulador</p>
+      <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/55">Simulador</p>
       <h3 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground">
         Estime o seu projeto
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        Valor base de <span className="font-mono text-blue-300">{BRL.format(RATE)}/hora</span>.
+        Valor base de <span className="font-mono text-white/70">{BRL.format(RATE)}/hora</span>.
       </p>
 
       {/* PRESETS INTELIGENTES */}
@@ -43,11 +43,11 @@ export function PriceCalculator() {
               onClick={() => setHours(p.hours)}
               className={`flex flex-col items-center gap-3 rounded-2xl border p-5 text-sm transition-all ${
                 isSelected
-                  ? "border-blue-500/50 bg-blue-500/10 text-blue-400 shadow-[0_0_20px_-5px_rgba(37,99,235,0.3)]"
+                  ? "border-white/30 bg-white/5 text-white/55 shadow-none"
                   : "border-border/40 bg-background/30 text-muted-foreground hover:bg-card/80 hover:border-border/80"
               }`}
             >
-              <p.icon className={`size-6 ${isSelected ? "text-blue-400" : "text-muted-foreground/60"}`} />
+              <p.icon className={`size-6 ${isSelected ? "text-white/55" : "text-muted-foreground/60"}`} />
               <span className="font-medium tracking-wide">{p.label}</span>
             </button>
           )
@@ -83,7 +83,7 @@ export function PriceCalculator() {
       <div className="mt-8 flex items-end justify-between border-t border-border/30 pt-6">
         <div className="flex flex-col">
           <span className="text-sm text-muted-foreground">Estimativa total</span>
-          <span className="font-mono text-xs text-blue-400/60 mt-1">{hours}h × {BRL.format(RATE)}</span>
+          <span className="font-mono text-xs text-white/55/60 mt-1">{hours}h × {BRL.format(RATE)}</span>
         </div>
         <span className="font-display text-4xl font-bold text-foreground">{BRL.format(total)}</span>
       </div>
@@ -92,7 +92,7 @@ export function PriceCalculator() {
         href={wa}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border border-blue-900/40 bg-gradient-to-r from-blue-950 to-black px-6 py-4 text-sm font-medium text-blue-200 transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-neutral-900 to-black px-6 py-4 text-sm font-medium text-white/80 transition-all hover:scale-[1.02] hover:shadow-none"
       >
         Solicitar orçamento com essa base
       </a>

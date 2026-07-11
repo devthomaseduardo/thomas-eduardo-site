@@ -144,10 +144,8 @@ export default function PropostaPage() {
           Se estiver de acordo, alinhamos os detalhes finais e eu te envio a proposta fechada com prazo e valor.
         </p>
         <a
-          href={CONTACT.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-blue-900/40 bg-gradient-to-r from-blue-950 to-black px-7 py-3.5 text-sm font-medium text-blue-200 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] print:hidden"
+          href="/r/wa"
+          className="group mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98] print:hidden"
         >
           Iniciar conversa
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
