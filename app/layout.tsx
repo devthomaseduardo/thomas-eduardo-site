@@ -77,7 +77,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased" suppressHydrationWarning={true}>
+      <body className="font-sans antialiased overflow-x-hidden" suppressHydrationWarning={true}>
         <SmoothScroll>
           <SiteNav />
           <main>{children}</main>

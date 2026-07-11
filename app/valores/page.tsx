@@ -1,328 +1,319 @@
 "use client"
 
 import Image from "next/image"
-import { Check, Clock, ShieldCheck, FileText, Zap, MessageCircleQuestion } from "lucide-react"
-import { Reveal } from "@/components/reveal"
-import { PriceCalculator } from "@/components/price-calculator"
-import { Icon } from "@iconify/react"
+import { Check, MessageCircleQuestion, ArrowRight, ArrowDown } from "lucide-react"
 import { CONTACT } from "@/lib/data"
 import { motion } from "framer-motion"
 import { PageAnimator } from "@/components/page-animator"
+import { Icon } from "@iconify/react"
 
-const HOURLY_RATE = 20
-
-const PACKS = [
-  {
-    name: "Landing / Página",
-    hours: "6h",
-    hoursNote: "prazo médio: 3 a 5 dias",
-    price: "R$ 120",
-    priceNote: `R$${HOURLY_RATE}/h × 6h`,
-    highlight: false,
-    features: [
-      "Página única de alta conversão",
-      "Responsiva + SEO técnico",
-      "Animações e integração com WhatsApp",
-      "Deploy na Vercel",
-    ],
-  },
-  {
-    name: "Sistema / App",
-    hours: "20–40h",
-    hoursNote: "prazo médio: 2 a 4 semanas",
-    price: "R$ 400 – R$ 800",
-    priceNote: `R$${HOURLY_RATE}/h × horas do escopo`,
-    highlight: true,
-    features: [
-      "Dashboard e área administrativa",
-      "Autenticação JWT + RBAC",
-      "API REST + banco de dados",
-      "Documentação e deploy",
-    ],
-  },
-  {
-    name: "Automação",
-    hours: "10–20h",
-    hoursNote: "prazo médio: 1 a 2 semanas",
-    price: "R$ 200 – R$ 400",
-    priceNote: `R$${HOURLY_RATE}/h × horas do escopo`,
-    highlight: false,
-    features: [
-      "Integração entre sistemas e APIs",
-      "Fluxos automatizados",
-      "Bots e processamento de dados",
-      "Redução de trabalho manual",
-    ],
-  },
+const STEPS = [
+  { step: "01", title: "Conversa inicial", text: "Você explica sua ideia, objetivo e necessidades.", image: "/projects/homma-section.webp" },
+  { step: "02", title: "Análise", text: "Avalio o projeto, identifico desafios e proponho a melhor solução.", image: "/projects/homma-projetos.webp" },
+  { step: "03", title: "Proposta personalizada", text: "Você recebe uma proposta com escopo, entregas, cronograma e investimento.", image: "/hero.png" },
+  { step: "04", title: "Aprovação", text: "Após a aprovação iniciamos o desenvolvimento.", image: "/projects/homma-section.webp" },
+  { step: "05", title: "Desenvolvimento", text: "Você acompanha a evolução do projeto passo a passo.", image: "/projects/homma-projetos.webp" },
+  { step: "06", title: "Entrega", text: "Publicação, validação e encerramento do ciclo.", image: "/hero.png" },
 ]
 
-const HOW = [
-  {
-    icon: Clock,
-    title: "R$20 por hora, sem pegadinha",
-    text: "É o único valor base que uso. Uma landing page de 6h fecha em R$120 — a conta é essa, sem taxa escondida.",
-  },
-  {
-    icon: FileText,
-    title: "Proposta com valor fixo",
-    text: "Depois de alinhar o escopo, envio uma proposta fechada com número e prazo exatos — não fico cobrando por hora solta.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Sem surpresas",
-    text: "Escopo claro antes de começar. Você aprova o valor antes de eu tocar em uma linha de código.",
-  },
+const INCLUDED = [
+  { label: "Planejamento", icon: "ph:strategy-bold" },
+  { label: "Desenvolvimento", icon: "ph:code-bold" },
+  { label: "Responsividade", icon: "ph:devices-bold" },
+  { label: "SEO técnico", icon: "ph:magnifying-glass-bold" },
+  { label: "Integrações", icon: "ph:plugs-connected-bold" },
+  { label: "Deploy", icon: "ph:rocket-launch-bold" },
+  { label: "Documentação", icon: "ph:file-text-bold" },
+  { label: "Suporte inicial", icon: "ph:headset-bold" },
+]
+
+const DELIVERABLES = [
+  "Proposta personalizada", "Cronograma", "Escopo completo", "Contrato",
+  "Canal de comunicação", "Entrega organizada", "Deploy", "Suporte inicial",
 ]
 
 const FAQ = [
-  {
-    q: "Não sei quantas horas meu projeto vai levar. E agora?",
-    a: "Sem problema. Você me conta o que precisa e eu volto com uma estimativa de horas e valor em até 24h — de graça, sem compromisso.",
-  },
-  {
-    q: "O valor pode mudar no meio do projeto?",
-    a: "Não. Depois que a proposta é aprovada, o valor é fixo. Se o escopo mudar durante o projeto, alinhamos antes de qualquer ajuste.",
-  },
-  {
-    q: "Como funciona o pagamento?",
-    a: "Costumo dividir em duas partes: um sinal pra iniciar e o restante na entrega. Pix ou transferência.",
-  },
-  {
-    q: "Preciso já ter tudo definido antes de falar com você?",
-    a: "Não. Boa parte do trabalho é justamente ajudar a transformar uma ideia solta num escopo claro, com valor e prazo definidos.",
-  },
+  { q: "Como funciona o pagamento?", a: "Normalmente dividido em duas partes: um sinal para iniciar o projeto e o saldo restante na entrega final. Tudo definido em contrato." },
+  { q: "Quando o projeto começa?", a: "Assim que a proposta e o cronograma forem aprovados e o sinal inicial for confirmado." },
+  { q: "Posso solicitar alterações?", a: "Sim. O processo possui etapas de validação para garantir que o resultado atenda às suas expectativas, respeitando o escopo aprovado." },
+  { q: "Como acompanho o desenvolvimento?", a: "Através de um canal de comunicação direto, onde envio atualizações frequentes e links de preview para você testar." },
+  { q: "E se eu ainda não souber exatamente o que preciso?", a: "Sem problemas. A conversa inicial e a fase de análise servem exatamente para transformar uma ideia inicial em um escopo técnico sólido." },
 ]
 
-export default function ValoresPage() {
+const fadeUp = { initial: { opacity: 0, y: 30 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true } }
+
+export default function ProcessPage() {
   return (
-    <>
+    <main className="min-h-screen bg-background text-foreground overflow-hidden">
       <PageAnimator />
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden pt-32 pb-20 px-6 bg-background">
-        {/* Decorative image corner */}
-        <div className="pointer-events-none absolute right-0 top-0 h-[80%] w-[40%] overflow-hidden opacity-15 hidden lg:block">
-          <Image
-            src="/projects/homma-section.webp"
-            alt=""
-            fill
-            className="object-cover object-center"
-            sizes="40vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 to-background" />
-        </div>
 
-        <div className="relative mx-auto max-w-7xl">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6"
-          >
-            / Valores
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl max-w-2xl leading-[1.05]"
-          >
-            Preço <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">transparente,</span><br />sem enrolação.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 max-w-xl text-xl text-muted-foreground"
-          >
-            Trabalho com um único valor base por hora — R${HOURLY_RATE} — e fecho cada projeto 
-            com proposta de valor fixo e prazo definido. Simples assim.
-          </motion.p>
-        </div>
-      </section>
+      {/* ══════════════ HERO ══════════════ */}
+      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <Image src="/projects/homma-projetos.webp" alt="" fill className="object-cover brightness-[0.25]" sizes="100vw" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
 
-      {/* ── VALOR BASE ── */}
-      <section className="mx-auto max-w-7xl px-6 pb-8">
-        <Reveal>
-          <div className="flex flex-col items-center gap-6 rounded-[2.5rem] border border-blue-900/30 bg-gradient-to-r from-blue-950/30 to-black/40 px-6 sm:px-10 py-10 sm:py-12 text-center sm:flex-row sm:justify-between sm:text-left">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-blue-400">Valor base</p>
-              <p className="mt-2 font-display text-5xl sm:text-6xl font-bold text-foreground">
-                R${HOURLY_RATE}
-                <span className="text-2xl font-normal text-muted-foreground">/hora</span>
-              </p>
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 items-center gap-12 sm:gap-16 py-24 sm:py-32">
+          <motion.div {...fadeUp} transition={{ duration: 0.8 }}>
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
+              <span className="relative flex size-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" /><span className="relative inline-flex size-2 rounded-full bg-blue-400" /></span>
+              Processo Transparente
             </div>
-            <p className="max-w-sm text-base leading-relaxed text-muted-foreground">
-              Todo orçamento que você vê nessa página nasce dessa conta: horas estimadas × R${HOURLY_RATE}. 
-              Sem variação por cliente, sem &quot;depende&quot;.
+            <h1 className="font-display text-[2.5rem] sm:text-7xl font-semibold tracking-tighter leading-[1.05]">
+              Como funciona<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">um projeto.</span>
+            </h1>
+            <p className="mt-8 text-lg sm:text-xl text-white/60 leading-relaxed max-w-xl">
+              Cada projeto é diferente, mas todos seguem um processo claro, organizado e transparente do início ao fim.
             </p>
-          </div>
-        </Reveal>
-      </section>
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4">
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer"
+                className="btn-animate inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold text-black w-full sm:w-auto">
+                <Icon icon="mdi:whatsapp" className="size-5" /> Iniciar um projeto
+              </a>
+              <a href="#processo" className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-medium text-white/80 hover:bg-white/5 transition-colors w-full sm:w-auto">
+                Ver processo <ArrowDown className="size-4 group-hover:translate-y-1 transition-transform" />
+              </a>
+            </div>
+          </motion.div>
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-24">
-        <div className="gsap-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {HOW.map((h, i) => {
-            const Icon = h.icon
-            return (
-              <Reveal key={h.title} delay={i * 80}>
-                <div className="card-animate group rounded-[2rem] border border-border/40 bg-card/30 p-8 transition-all hover:border-border/60 hover:bg-card/60">
-                  <span className="inline-flex size-12 items-center justify-center rounded-[0.75rem] bg-gradient-to-br from-blue-950 to-black border border-blue-900/40 text-blue-400">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-foreground">{h.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.text}</p>
-                </div>
-              </Reveal>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* ── SIMULATOR ── */}
-      <section className="border-y border-border/30 bg-card/10">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 sm:py-32 lg:grid-cols-2 lg:items-center">
-          <div>
-            <Reveal>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">Simulador</p>
-              <h2 className="font-display text-2xl sm:text-4xl font-semibold tracking-tight text-foreground">
-                Calcule uma estimativa<br/>em segundos.
-              </h2>
-              <p className="mt-4 text-base text-muted-foreground">
-                Ajuste as horas e veja o valor na hora, sempre com base nos R${HOURLY_RATE}/hora. 
-                É só uma referência inicial — o valor final é fechado com o escopo.
-              </p>
-            </Reveal>
-            {/* Visual decoration */}
-            <Reveal delay={100} className="mt-8 hidden lg:block">
-              <div className="relative overflow-hidden rounded-[2rem] h-52">
-                <Image
-                  src="/projects/homma-projetos.webp"
-                  alt="Projeto"
-                  fill
-                  className="object-cover"
-                  sizes="400px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="font-mono text-xs text-white/70">Homma Design — 2026</span>
-                </div>
+          {/* Stats flutuantes */}
+          <motion.div {...fadeUp} transition={{ delay: 0.3, duration: 0.8 }} className="hidden lg:grid grid-cols-2 gap-6">
+            {[
+              { number: "10+", label: "Projetos entregues" },
+              { number: "100%", label: "Escopo definido" },
+              { number: "0", label: "Surpresas financeiras" },
+              { number: "24h", label: "Resposta média" },
+            ].map((s, i) => (
+              <div key={s.label} className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-1">
+                <p className="font-display text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">{s.number}</p>
+                <p className="mt-2 text-sm text-white/50">{s.label}</p>
               </div>
-            </Reveal>
-          </div>
-          <Reveal delay={100}>
-            <PriceCalculator />
-          </Reveal>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* ── PACKS ── */}
-      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
-        <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3 text-center">Pacotes</p>
-          <h2 className="font-display text-2xl sm:text-4xl font-semibold tracking-tight text-foreground text-center mb-12 sm:mb-16">
-            Formatos mais comuns de projeto.
-          </h2>
-        </Reveal>
+      {/* ══════════════ COMO TRABALHAMOS ══════════════ */}
+      <section id="processo" className="relative py-32 sm:py-40">
+        <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
+        <div className="absolute top-0 left-1/3 w-[600px] h-[400px] bg-blue-600/8 blur-[150px] rounded-full pointer-events-none" />
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {PACKS.map((p, i) => (
-            <Reveal key={p.name} delay={i * 90}>
-              <div
-                className={`flex flex-col rounded-[2.5rem] border p-8 h-full transition-all ${
-                  p.highlight
-                    ? "border-blue-500/50 bg-gradient-to-b from-blue-950/40 to-black/60 shadow-[0_0_40px_-10px_rgba(37,99,235,0.3)]"
-                    : "border-border/40 bg-card/30 hover:border-blue-500/30"
-                }`}
-              >
-                {p.highlight && (
-                  <span className="mb-4 w-fit rounded-full border border-blue-500/50 bg-blue-500/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-blue-400">
-                    Mais procurado
-                  </span>
-                )}
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
+          <motion.div {...fadeUp} className="mb-20 sm:mb-28 max-w-2xl">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-blue-400 mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-400/50" /> Etapa por etapa
+            </p>
+            <h2 className="font-display text-3xl sm:text-6xl font-semibold tracking-tight">Como trabalhamos</h2>
+            <p className="mt-6 text-lg text-white/50 leading-relaxed">
+              Um processo refinado e previsível para transformar ideias complexas em entregas sólidas.
+            </p>
+          </motion.div>
 
-                <h3 className="font-display text-xl font-semibold text-foreground">{p.name}</h3>
-                <p className="mt-1 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  {p.hours} · {p.hoursNote}
-                </p>
-
-                <p className="mt-6 font-display text-4xl font-bold leading-none text-foreground">{p.price}</p>
-                <p className="mt-1.5 font-mono text-xs text-muted-foreground">{p.priceNote}</p>
-
-                <ul className="mt-8 space-y-3 border-t border-border/30 pt-6 flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm">
-                      <Check className="mt-0.5 size-4 shrink-0 text-blue-400" />
-                      <span className="text-muted-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href={CONTACT.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-animate mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-border/40 bg-foreground px-6 py-3 text-sm font-medium text-background"
-                >
-                  <Icon icon="mdi:whatsapp" className="size-4" />
-                  Pedir orçamento
-                </a>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 rounded-[2rem] border border-border/30 bg-card/10 p-7 text-center text-sm text-muted-foreground">
-          Prefere conversar antes? Me chame no WhatsApp{" "}
-          <a
-            href={CONTACT.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 underline underline-offset-4 hover:text-blue-300"
-          >
-            {CONTACT.phone}
-          </a>{" "}
-          e descreva o projeto — respondo com uma estimativa de horas e valor rapidinho.
-        </Reveal>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section className="border-t border-border/30 bg-card/10">
-        <div className="mx-auto max-w-4xl px-6 py-24 sm:py-32">
-          <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3 text-center">FAQ</p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl text-center mb-12">
-              Antes de você me chamar.
-            </h2>
-          </Reveal>
-
-          <div className="flex flex-col gap-px overflow-hidden rounded-[2rem] border border-border/40">
-            {FAQ.map((item, i) => (
-              <Reveal key={item.q} delay={i * 70}>
-                <div className="group bg-card/30 p-7 hover:bg-card/60 transition-colors">
-                  <div className="flex items-start gap-3">
-                    <MessageCircleQuestion className="mt-0.5 size-4 shrink-0 text-blue-400" />
-                    <h3 className="font-display text-base font-semibold text-foreground">{item.q}</h3>
+          <div className="space-y-8">
+            {STEPS.map((item, i) => {
+              const isEven = i % 2 === 0
+              return (
+                <motion.div key={item.step} {...fadeUp} transition={{ delay: i * 0.1 }}
+                  className={`group grid lg:grid-cols-2 gap-8 items-center ${!isEven ? 'lg:direction-rtl' : ''}`}>
+                  
+                  {/* Imagem */}
+                  <div className={`relative h-[220px] sm:h-[360px] rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border border-border/30 ${!isEven ? 'lg:order-2' : ''}`}>
+                    <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-6 left-8 right-8">
+                      <span className="font-mono text-xs text-blue-400 tracking-widest">PASSO {item.step}</span>
+                    </div>
                   </div>
-                  <p className="mt-3 pl-7 text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+
+                  {/* Texto */}
+                  <div className={`${!isEven ? 'lg:order-1 lg:text-right' : ''} p-2 sm:p-8`}>
+                    <div className={`inline-flex items-center justify-center size-12 sm:size-16 rounded-xl sm:rounded-2xl bg-blue-500/10 border border-blue-500/20 mb-4 sm:mb-6 text-blue-400 shadow-[0_0_30px_rgba(59,130,246,0.15)]`}>
+                      <span className="font-display text-2xl font-bold">{item.step}</span>
+                    </div>
+                    <h3 className="font-display text-2xl sm:text-4xl font-semibold mb-3 sm:mb-4">{item.title}</h3>
+                    <p className="text-lg text-white/60 leading-relaxed max-w-md">{item.text}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ O QUE ESTÁ INCLUSO ══════════════ */}
+      <section className="relative border-t border-border/30 bg-card/10 py-32 sm:py-40">
+        <div className="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_right,rgba(59,130,246,0.06)_0%,transparent_70%)] pointer-events-none" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+          <motion.div {...fadeUp} className="mb-16 sm:mb-24 text-center">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-blue-400 mb-4">Incluso em todo projeto</p>
+            <h2 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">Tudo que você precisa</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {INCLUDED.map((item, i) => (
+              <motion.div key={item.label} {...fadeUp} transition={{ delay: i * 0.06 }}
+                className="group flex flex-col items-center text-center gap-3 sm:gap-5 rounded-2xl sm:rounded-3xl border border-border/30 bg-card/20 p-5 sm:p-8 backdrop-blur-sm transition-all duration-500 hover:bg-card/50 hover:border-blue-500/30 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(59,130,246,0.15)]">
+                <div className="flex size-14 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 border border-blue-500/20 transition-all group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                  <Icon icon={item.icon} className="size-6" />
                 </div>
-              </Reveal>
+                <span className="text-white/80 font-semibold text-base">{item.label}</span>
+              </motion.div>
             ))}
           </div>
-
-          <Reveal delay={FAQ.length * 70} className="mt-10 text-center">
-            <a
-              href={CONTACT.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animate inline-flex items-center justify-center gap-2 rounded-full border border-border/40 bg-foreground px-8 py-4 text-sm font-medium text-background"
-            >
-              <Icon icon="mdi:whatsapp" className="size-5" />
-              Falar agora no WhatsApp
-            </a>
-          </Reveal>
         </div>
       </section>
-    </>
+
+      {/* ══════════════ TRANSPARÊNCIA ══════════════ */}
+      <section className="relative border-t border-border/30 py-32 sm:py-40 overflow-hidden">
+        <div className="absolute left-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_left,rgba(59,130,246,0.06)_0%,transparent_70%)] pointer-events-none" />
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          {/* Imagem */}
+          <motion.div {...fadeUp} className="relative h-[400px] sm:h-[500px] rounded-[2.5rem] overflow-hidden border border-border/30">
+            <Image src="/thomas-about.png" alt="Thomas Eduardo" fill className="object-cover object-top" sizes="50vw" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <p className="font-mono text-xs text-blue-400 tracking-widest mb-2">COMPROMISSO</p>
+              <p className="text-white/70 text-sm leading-relaxed">Transparência total do início ao fim.</p>
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-blue-400 mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-400/50" /> Garantia
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight mb-12">Transparência Total</h2>
+
+            <ul className="space-y-6">
+              {[
+                "Escopo definido antes do início.",
+                "Valor fechado antes do desenvolvimento.",
+                "Mudanças de escopo discutidas previamente.",
+                "Sem surpresas financeiras no percurso.",
+                "Comunicação constante durante o projeto.",
+              ].map((t, i) => (
+                <li key={i} className="flex items-start gap-4 text-lg text-white/70 leading-relaxed">
+                  <div className="mt-1.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30">
+                    <Check className="size-3.5 text-blue-400" />
+                  </div>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════ INVESTIMENTO ══════════════ */}
+      <section className="relative border-t border-border/30 bg-card/10 py-32 sm:py-40">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+          <motion.div {...fadeUp}>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-blue-400 mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-400/50" /> Investimento
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight mb-8">
+              Como é calculado <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">o investimento</span>
+            </h2>
+            <p className="text-lg text-white/60 leading-relaxed mb-8">Cada projeto é único e estimado cuidadosamente conforme:</p>
+            <div className="grid grid-cols-2 gap-4 mb-10">
+              {["Complexidade", "Funcionalidades", "Prazo", "Integrações", "Requisitos Únicos"].map(item => (
+                <div key={item} className="flex items-center gap-3 text-white/80 font-medium">
+                  <Check className="size-4 text-blue-400" /> {item}
+                </div>
+              ))}
+            </div>
+            <p className="text-lg text-white/60 leading-relaxed">Depois dessa análise, eu apresento uma <strong className="text-white">proposta personalizada</strong> e blindada contra surpresas.</p>
+          </motion.div>
+
+          {/* Fluxo Visual Elegante */}
+          <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="relative p-12 sm:p-16 rounded-[2.5rem] border border-border/30 bg-card/20 backdrop-blur-md">
+            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-blue-500/5 to-transparent pointer-events-none" />
+            <div className="flex flex-col items-center gap-2 relative z-10">
+              {["Ideia Original", "Análise de Escopo", "Estimativa de Esforço", "Proposta Fechada", "Início do Projeto"].map((lbl, idx, arr) => (
+                <div key={lbl} className="flex flex-col items-center w-full max-w-[260px]">
+                  <div className={`w-full rounded-2xl border py-4 px-6 text-center text-sm font-semibold shadow-lg transition-all
+                    ${idx === arr.length - 1
+                      ? "border-blue-500/50 bg-blue-500/20 text-blue-300 shadow-[0_0_30px_rgba(59,130,246,0.2)]"
+                      : "border-border/40 bg-black/50 text-white/80 hover:border-white/20"}`}>
+                    {lbl}
+                  </div>
+                  {idx < arr.length - 1 && (
+                    <div className="h-8 w-px bg-gradient-to-b from-border to-blue-500/40 my-1 relative">
+                      <ArrowDown className="absolute -bottom-3 left-1/2 -translate-x-1/2 size-4 text-blue-400/60" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════ O QUE VOCÊ RECEBE ══════════════ */}
+      <section className="relative border-t border-border/30 py-32 sm:py-40">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8 text-center relative z-10">
+          <motion.div {...fadeUp} className="mb-16 sm:mb-24">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-blue-400 mb-4">Entregáveis</p>
+            <h2 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">O que você recebe</h2>
+          </motion.div>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-4xl mx-auto">
+            {DELIVERABLES.map((item, i) => (
+              <motion.div key={item} {...fadeUp} transition={{ delay: i * 0.05 }}
+                className="group relative overflow-hidden rounded-full border border-border/30 bg-card/20 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-medium text-white/90 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-card/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
+                {item}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ FAQ ══════════════ */}
+      <section className="relative border-t border-border/30 bg-card/10 py-32 sm:py-40">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <motion.div {...fadeUp} className="mb-16 text-center">
+            <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">Perguntas frequentes</h2>
+          </motion.div>
+          <div className="space-y-6">
+            {FAQ.map((item, i) => (
+              <motion.div key={item.q} {...fadeUp} transition={{ delay: i * 0.1 }}
+                className="card-animate rounded-3xl border border-border/30 bg-card/20 p-8 backdrop-blur-sm hover:bg-card/40 hover:border-border/50">
+                <div className="flex items-start gap-5">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+                    <MessageCircleQuestion className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl font-medium text-white mb-3">{item.q}</h3>
+                    <p className="text-white/60 leading-relaxed">{item.a}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ CTA FINAL ══════════════ */}
+      <section className="relative overflow-hidden border-t border-border/30">
+        <Image src="/projects/homma-section.webp" alt="" fill className="object-cover brightness-[0.15]" sizes="100vw" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/60 to-background/90" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(29,78,216,0.15)_0%,transparent_60%)] pointer-events-none" />
+
+        <div className="relative z-10 mx-auto max-w-4xl px-6 py-32 sm:py-48 text-center">
+          <motion.h2 {...fadeUp} className="font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+            Vamos conversar<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">sobre seu projeto?</span>
+          </motion.h2>
+          <motion.p {...fadeUp} transition={{ delay: 0.1 }} className="mt-8 text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto">
+            Conte um pouco sobre sua ideia. Vou analisar e preparar uma proposta personalizada com escopo, cronograma e investimento.
+          </motion.p>
+          <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="mt-12">
+            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer"
+              className="btn-animate inline-flex items-center gap-2 rounded-full bg-white px-10 py-5 text-base font-semibold text-black">
+              <Icon icon="mdi:whatsapp" className="size-5" /> Solicitar proposta
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </main>
   )
 }

@@ -39,11 +39,11 @@
 :root {
   color-scheme: dark;
   /* Core palette: Black background, White foreground, Gray elements */
-  --background: #0B0B0B;
+  --background: #000000;
   --foreground: #FFFFFF;
   --card: #18181B; /* Dark gray for card */
   --card-foreground: #FFFFFF;
-  --popover: #0B0B0B;
+  --popover: #000000;
   --popover-foreground: #FFFFFF;
   --primary: #1D4ED8; /* Darker Accent Blue */
   --primary-foreground: #FFFFFF;

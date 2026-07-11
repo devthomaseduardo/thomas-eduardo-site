@@ -20,10 +20,10 @@ export default function HomePage() {
     <>
       <PageAnimator />
       <Hero />
-      <ProjectsStack />
       <ClientsCarousel />
-      <OliverParallax />
+      <ProjectsStack />
       <EngineeringApproach />
+      <OliverParallax />
       <TechExpertise />
       <About />
     </>

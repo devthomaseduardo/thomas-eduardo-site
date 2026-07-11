@@ -1,53 +1,33 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { useTransform, useScroll, motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import React from "react";
+import {
+  Autoplay,
+  EffectCoverflow,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css";
+import "swiper/css/effect-cards";
 
-const IMAGES = [
-  "/projects/homma-projetos.webp",
-  "/projects/homma-section.webp",
-  "/projects/paper-contratos.svg",
-  "/projects/sleep-house-campinas.svg",
-  "/projects/academia-spinmove.svg",
-  "/projects/yagizi-swissparck.svg",
-  "/projects/intituto-kell.svg",
-  "/projects/hazap-workstation.svg",
-  "/hero.png",
-  "/portrait.png",
-  "/projects/homma-projetos.webp",
-  "/projects/homma-section.webp",
-]
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { PROJECTS } from "@/lib/data";
+
+const IMAGES = PROJECTS.map((project) => ({
+  src: project.image,
+  alt: project.title,
+}));
 
 export function OliverParallax() {
-  const galleryRef = useRef<HTMLDivElement>(null)
-  const [dimension, setDimension] = useState({ width: 0, height: 0 })
-
-  const { scrollYProgress } = useScroll({
-    target: galleryRef,
-    offset: ["start end", "end start"],
-  })
-
-  const { height } = dimension
-
-  // Parallax Y translations for each of the 4 columns
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * 2])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3])
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25])
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
-
-  useEffect(() => {
-    const resize = () => {
-      setDimension({ width: window.innerWidth, height: window.innerHeight })
-    }
-    window.addEventListener("resize", resize)
-    resize()
-    return () => window.removeEventListener("resize", resize)
-  }, [])
-
   return (
     <section className="relative bg-background py-20 overflow-hidden border-t border-border/10">
-      {/* Seção Header decorativo do portfólio */}
       <div className="mx-auto max-w-7xl px-6 mb-16">
         <span className="font-mono text-xs uppercase tracking-[0.25em] text-blue-400 block mb-3">
           / Galeria Visual
@@ -57,47 +37,121 @@ export function OliverParallax() {
         </h2>
       </div>
 
-      {/* Grid Parallax Wrapper */}
-      <div 
-        ref={galleryRef} 
-        className="relative h-[175vh] w-full overflow-hidden flex gap-[2vw] p-[2vw] justify-center bg-black/20"
-      >
-        <Column images={[IMAGES[0], IMAGES[1], IMAGES[2]]} y={y} topClass="-top-[15%]" />
-        <Column images={[IMAGES[3], IMAGES[4], IMAGES[5]]} y={y2} topClass="-top-[30%]" />
-        <Column images={[IMAGES[6], IMAGES[7], IMAGES[8]]} y={y3} topClass="-top-[10%]" className="hidden sm:flex" />
-        <Column images={[IMAGES[9], IMAGES[10], IMAGES[11]]} y={y4} topClass="-top-[25%]" className="hidden md:flex" />
+      <div className="flex w-full items-center justify-center overflow-hidden bg-background">
+        <Carousel_001 className="w-full max-w-6xl" images={IMAGES} showPagination loop autoplay />
       </div>
     </section>
-  )
+  );
 }
 
-interface ColumnProps {
-  images: string[]
-  y: any
-  topClass?: string
-  className?: string
-}
-
-function Column({ images, y, topClass = "top-0", className = "" }: ColumnProps) {
+const Carousel_001 = ({
+  images,
+  className,
+  showPagination = false,
+  showNavigation = true,
+  loop = true,
+  autoplay = false,
+  spaceBetween = 40,
+}: {
+  images: { src: string; alt: string }[];
+  className?: string;
+  showPagination?: boolean;
+  showNavigation?: boolean;
+  loop?: boolean;
+  autoplay?: boolean;
+  spaceBetween?: number;
+}) => {
+  const css = `
+  .Carousal_001 {
+    padding-bottom: 50px !important;
+  }
+  .swiper-pagination-bullet {
+    background: #fff !important;
+    opacity: 0.5;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+  `;
   return (
-    <motion.div 
-      style={{ y }}
-      className={`relative w-1/2 sm:w-1/3 md:w-1/4 h-full flex flex-col gap-[2vw] min-w-[120px] sm:min-w-[240px] ${topClass} ${className}`}
+    <motion.div
+      initial={{ opacity: 0, translateY: 20 }}
+      whileInView={{ opacity: 1, translateY: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{
+        duration: 0.5,
+        delay: 0.2,
+      }}
+      className={cn("w-full relative", className)}
     >
-      {images.map((src, idx) => (
-        <div 
-          key={src + idx} 
-          className="relative w-full h-[33%] rounded-[1rem] sm:rounded-[2rem] overflow-hidden border border-white/5 bg-card shadow-2xl"
-        >
-          <Image 
-            src={src} 
-            alt="Showcase item" 
-            fill 
-            className="object-cover filter contrast-[1.03] brightness-[0.8] hover:brightness-100 transition-all duration-500"
-            sizes="(max-width: 768px) 120px, 240px"
-          />
-        </div>
-      ))}
+      <style>{css}</style>
+
+      <Swiper
+        spaceBetween={spaceBetween}
+        autoplay={
+          autoplay
+            ? {
+                delay: 2500,
+                disableOnInteraction: false,
+              }
+            : false
+        }
+        effect="coverflow"
+        grabCursor={true}
+        centeredSlides={true}
+        loop={loop}
+        breakpoints={{
+          320: { slidesPerView: 1.2, spaceBetween: 20 },
+          640: { slidesPerView: 1.5, spaceBetween: 30 },
+          1024: { slidesPerView: 2.43, spaceBetween: 40 },
+        }}
+        coverflowEffect={{
+          rotate: 0,
+          slideShadows: true,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={
+          showPagination
+            ? {
+                clickable: true,
+              }
+            : false
+        }
+        navigation={
+          showNavigation
+            ? {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }
+            : false
+        }
+        className="Carousal_001"
+        modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index} className="!h-[320px] sm:!h-[450px] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-card">
+            <Image
+              className="h-full w-full object-cover filter contrast-[1.03]"
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </SwiperSlide>
+        ))}
+        {showNavigation && (
+          <div className="hidden sm:block">
+            <div className="swiper-button-next after:hidden bg-background/50 backdrop-blur-md border border-white/10 rounded-full w-12 h-12 flex items-center justify-center !right-4">
+              <ChevronRightIcon className="h-6 w-6 text-white" />
+            </div>
+            <div className="swiper-button-prev after:hidden bg-background/50 backdrop-blur-md border border-white/10 rounded-full w-12 h-12 flex items-center justify-center !left-4">
+              <ChevronLeftIcon className="h-6 w-6 text-white" />
+            </div>
+          </div>
+        )}
+      </Swiper>
     </motion.div>
-  )
-}
+  );
+};

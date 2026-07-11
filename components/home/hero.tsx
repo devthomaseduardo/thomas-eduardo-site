@@ -37,7 +37,7 @@ export function Hero() {
   const scalePortrait = useTransform(scrollYProgress, [0, 0.3, 0.6], [0.8, 0.8, 1])
 
   return (
-    <div ref={containerRef} className="relative h-[140vh] sm:h-[180vh] w-full bg-background">
+    <div ref={containerRef} className="relative h-[110vh] sm:h-[150vh] w-full bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
         {/* Vídeo de fundo com máscara radial dinâmica (Siena Parallax) */}
@@ -51,15 +51,15 @@ export function Hero() {
           >
             <video
               ref={videoRef}
-              src="/mais_lento_e_o_fundo_negro.mp4"
+              src="/hero.mp4"
               autoPlay
               muted
               loop
               playsInline
-              className="absolute inset-0 h-full w-full object-cover brightness-[0.5] contrast-[1.05]"
+              className="absolute inset-0 h-full w-full object-cover brightness-[0.8] contrast-[1.05]"
             />
-            {/* Vinheta escura */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/45" />
+            {/* Vinheta super leve apenas para as bordas não ficarem duras */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
           </motion.div>
         </motion.div>
 
@@ -86,17 +86,20 @@ export function Hero() {
         {/* Textos Centralizados no Hero (surgem depois da máscara circular abrir) */}
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 mx-auto w-full max-w-7xl px-6 flex flex-col items-start justify-center h-full text-left"
+          className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 flex flex-col items-start justify-center h-full text-left"
         >
           {/* Headline */}
-          <h1 className="font-display text-5xl font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl leading-[1.02] max-w-5xl">
-            Criando produtos digitais <br />
+          <h1 className="font-display text-[2.5rem] font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl leading-[1.02] max-w-5xl">
+            Criando produtos digitais <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">com precisão.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed font-light">
-            Arquitetura escalável, performance excepcional e foco em resultados de negócios reais.
-          </p>
+          {/* Container para o texto conforme solicitado */}
+          <div className="mt-6 sm:mt-8 max-w-xl rounded-[1.5rem] border border-white/10 bg-black/40 p-5 sm:p-6 backdrop-blur-md shadow-2xl">
+            <p className="text-sm sm:text-lg text-white/80 leading-relaxed font-light">
+              Arquitetura escalável, performance excepcional e foco em resultados de negócios reais.
+            </p>
+          </div>
         </motion.div>
 
         {/* Scroll indicator (visível inicialmente para convidar o scroll) */}
@@ -119,4 +122,4 @@ export function Hero() {
       </div>
     </div>
   )
-}
+}  

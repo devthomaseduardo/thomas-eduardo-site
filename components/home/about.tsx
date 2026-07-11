@@ -26,7 +26,7 @@ export function About() {
   return (
     <section id="about" className="relative py-24 sm:py-32 overflow-hidden border-y border-border/20 bg-background">
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
         {/* — Linha editorial topo — */}
         <div className="flex items-center gap-4 mb-16">
@@ -44,7 +44,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.05]"
+              className="font-display text-[2.25rem] font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.05]"
             >
               Produto.<br />
               <span className="text-muted-foreground">Engenharia.</span><br />
