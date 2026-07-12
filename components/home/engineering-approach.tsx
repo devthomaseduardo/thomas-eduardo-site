@@ -27,7 +27,7 @@ export function EngineeringApproach() {
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-h2 text-foreground"
+            className="text-h2 font-normal text-foreground tracking-[-0.02em]"
           >
             Filosofia de engenharia.
           </motion.h2>
