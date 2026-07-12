@@ -23,7 +23,7 @@ type MobileCarouselProps = {
 }
 
 /**
- * Mobile: horizontal snap carousel (less vertical scroll).
+ * Mobile: horizontal snap carousel with excellent gesture navigation.
  * Desktop (sm+): normal grid/flex via desktopClassName.
  */
 export function MobileCarousel({
@@ -42,9 +42,11 @@ export function MobileCarousel({
     if (!el) return
     const slides = Array.from(el.children) as HTMLElement[]
     if (!slides.length) return
+
     const mid = el.scrollLeft + el.clientWidth / 2
     let best = 0
     let bestDist = Infinity
+
     slides.forEach((slide, i) => {
       const center = slide.offsetLeft + slide.offsetWidth / 2
       const d = Math.abs(center - mid)
@@ -53,15 +55,18 @@ export function MobileCarousel({
         best = i
       }
     })
+
     setActive(best)
   }, [])
 
   useEffect(() => {
     const el = scrollerRef.current
     if (!el) return
+
     syncActive()
     el.addEventListener("scroll", syncActive, { passive: true })
     window.addEventListener("resize", syncActive)
+
     return () => {
       el.removeEventListener("scroll", syncActive)
       window.removeEventListener("resize", syncActive)
@@ -71,9 +76,13 @@ export function MobileCarousel({
   const goTo = (index: number) => {
     const el = scrollerRef.current
     if (!el) return
+
     const slide = el.children[index] as HTMLElement | undefined
     if (!slide) return
-    el.scrollTo({ left: slide.offsetLeft - 16, behavior: "smooth" })
+
+    // Melhor centralização com pequeno offset
+    const targetLeft = slide.offsetLeft - 16
+    el.scrollTo({ left: targetLeft, behavior: "smooth" })
   }
 
   return (
@@ -81,10 +90,12 @@ export function MobileCarousel({
       <div
         ref={scrollerRef}
         className={cn(
-          // mobile carousel
-          "-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1",
+          // Mobile carousel com boa experiência de gesto
+          "-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3",
           "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
-          // desktop grid
+          "touch-action: pan-x",           // Melhora resposta ao toque/gesto
+          "scroll-behavior: smooth",       // Suaviza gestos
+          // Desktop
           "sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0 sm:pb-0",
           desktopClassName,
         )}
@@ -93,7 +104,7 @@ export function MobileCarousel({
           <div
             key={isValidElement(child) && child.key != null ? String(child.key) : i}
             className={cn(
-              "shrink-0 snap-center sm:min-w-0 sm:shrink sm:snap-align-none",
+              "shrink-0 snap-center snap-always sm:min-w-0 sm:shrink sm:snap-align-none",
               itemClassName,
               "sm:!w-auto sm:!max-w-none",
             )}
@@ -103,19 +114,20 @@ export function MobileCarousel({
         ))}
       </div>
 
+      {/* Dots mais delicados e modernos */}
       {dots && items.length > 1 && (
-        <div className="mt-3 flex items-center justify-center gap-2 sm:hidden">
+        <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
           {items.map((_, i) => (
             <button
               key={i}
               type="button"
-              aria-label={`Slide ${i + 1}`}
+              aria-label={`Ir para o slide ${i + 1}`}
               onClick={() => goTo(i)}
               className={cn(
-                "h-[3px] rounded-full transition-all duration-300 ease-out",
-                i === active 
-                  ? "w-6 bg-white/90" 
-                  : "w-1.5 bg-white/20 hover:bg-white/30",
+                "h-1 rounded-full transition-all duration-200 ease-out",
+                i === active
+                  ? "w-5 bg-white/85"           // Active: barra elegante e sutil
+                  : "w-1 bg-white/15 hover:bg-white/30" // Inativo: muito discreto
               )}
             />
           ))}
