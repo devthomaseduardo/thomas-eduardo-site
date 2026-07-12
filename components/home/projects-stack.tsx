@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react"
 import { MobileCarousel } from "@/components/ui/mobile-carousel"
 
 export function ProjectsStack({
-  projects = PROJECTS.slice(0, 3),
+  projects = PROJECTS.slice(0, 6),
   hideHeader = false,
 }: {
   projects?: (typeof PROJECTS)[0][]
