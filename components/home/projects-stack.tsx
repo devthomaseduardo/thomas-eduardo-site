@@ -32,7 +32,7 @@ export function ProjectsStack({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5 }}
-              className="text-h2 text-foreground"
+              className="text-h2 font-normal text-foreground tracking-[-0.02em]"
             >
               Projetos
               <br className="sm:hidden" />
@@ -83,10 +83,10 @@ export function ProjectsStack({
           <Link
             href="/projetos"
             className="group inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.12em] text-white/55 transition-colors hover:text-white"
-          >
+            >
             Ver todos os projetos
             <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+            </Link>
         </div>
       )}
     </section>
