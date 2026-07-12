@@ -10,6 +10,7 @@ import { SmoothScroll } from "@/components/smooth-scroll"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
 import { CustomCursor } from "@/components/ui/custom-cursor"
 import { PageLoader } from "@/components/ui/page-loader"
+import { PageTransition } from "@/components/page-transition"
 import "./globals.css"
 
 // nik.co vibe: Suisse Int'l → Inter (body), Heathergreen → Syne (display)
@@ -103,7 +104,9 @@ export default function RootLayout({
           <PageLoader />
           <CustomCursor />
           <SiteNav />
-          <main>{children}</main>
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
           <FloatingWhatsApp />
           <SiteFooter />
           <Analytics />
