@@ -104,7 +104,7 @@ export function MobileCarousel({
       </div>
 
       {dots && items.length > 1 && (
-        <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
+        <div className="mt-3 flex items-center justify-center gap-2 sm:hidden">
           {items.map((_, i) => (
             <button
               key={i}
@@ -112,8 +112,10 @@ export function MobileCarousel({
               aria-label={`Slide ${i + 1}`}
               onClick={() => goTo(i)}
               className={cn(
-                "h-1 rounded-full transition-all duration-300",
-                i === active ? "w-5 bg-white" : "w-1.5 bg-white/25",
+                "h-[3px] rounded-full transition-all duration-300 ease-out",
+                i === active 
+                  ? "w-6 bg-white/90" 
+                  : "w-1.5 bg-white/20 hover:bg-white/30",
               )}
             />
           ))}
