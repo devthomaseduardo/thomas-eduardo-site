@@ -21,7 +21,7 @@ type MobileCarouselProps = {
 
 /**
  * Mobile carousel with smooth gesture navigation.
- * Very subtle dots by default.
+ * Extremely minimal dots.
  */
 export function MobileCarousel({
   children,
@@ -106,7 +106,7 @@ export function MobileCarousel({
         ))}
       </div>
 
-      {/* Extremely subtle dots */}
+      {/* Extremely minimal dots - almost invisible when inactive */}
       {dots && items.length > 1 && (
         <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
           {items.map((_, i) => (
@@ -116,10 +116,10 @@ export function MobileCarousel({
               aria-label={`Ir para slide ${i + 1}`}
               onClick={() => goTo(i)}
               className={cn(
-                "h-[2px] rounded-full transition-all duration-200 ease-out",
+                "h-[1.5px] rounded-full transition-all duration-200 ease-out",
                 i === active
-                  ? "w-6 bg-white/70"           // Active: thin elegant line
-                  : "w-[3px] bg-white/10 hover:bg-white/20" // Inactive: almost invisible
+                  ? "w-5 bg-white/60"           // Active: very thin line
+                  : "w-[2px] bg-white/8 hover:bg-white/15" // Inactive: barely visible
               )}
             />
           ))}
