@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { CLIENTS } from "@/lib/data"
 
+// Duplicamos a lista para criar um loop infinito suave no carrossel
 const ALL_CLIENTS = [...CLIENTS, ...CLIENTS]
 
 export function ClientsCarousel({
