@@ -42,7 +42,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-h1 leading-[0.95] tracking-[-0.02em]"
+              className="text-h1 font-medium leading-[0.95] tracking-[-0.03em]"
             >
               Produto.<br />
               Engenharia.<br />
@@ -77,7 +77,6 @@ export function About() {
               </p>
             </motion.div>
 
-            {/* Mobile - Carousel com menos texto */}
             <div className="sm:hidden">
               <MobileCarousel itemClassName="w-[min(85vw,19rem)]">
                 {PILLARS.map((p) => (
@@ -99,7 +98,6 @@ export function About() {
               </MobileCarousel>
             </div>
 
-            {/* Desktop */}
             <div className="hidden sm:block space-y-px">
               {PILLARS.map((p, index) => (
                 <motion.div
