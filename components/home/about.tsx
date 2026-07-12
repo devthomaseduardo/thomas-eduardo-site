@@ -42,7 +42,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-h1 font-medium leading-[0.95] tracking-[-0.03em]"
+              className="text-[clamp(2.4rem,6vw,4rem)] font-medium leading-[0.92] tracking-[-0.035em]"
             >
               Produto.<br />
               Engenharia.<br />
