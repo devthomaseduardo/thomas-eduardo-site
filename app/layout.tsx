@@ -42,11 +42,11 @@ const SITE_URL = "https://thomaseduardo.com.br"
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Thomas Eduardo | Product Engineer & Desenvolvedor Full Stack",
+    default: "Thomas Eduardo | Full Stack Software Engineer",
     template: "%s | Thomas Eduardo",
   },
   description:
-    "Product Engineer e Desenvolvedor Full Stack focado em criar aplicações web de alta performance, interfaces premium e sistemas empresariais escaláveis.",
+    "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
   keywords: [
     "Desenvolvedor Full Stack",
     "Product Engineer",
@@ -61,17 +61,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Thomas Eduardo R. Nascimento", url: SITE_URL }],
   creator: "Thomas Eduardo R. Nascimento",
   openGraph: {
-    title: "Thomas Eduardo | Product Engineer & Desenvolvedor Full Stack",
+    title: "Thomas Eduardo | Full Stack Software Engineer",
     description:
-      "Transformando problemas complexos em experiências digitais premium. Especialista em React, Next.js, Node.js e arquiteturas de alta performance.",
+      "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
     url: SITE_URL,
     siteName: "Thomas Eduardo",
     images: [
       {
-        url: "/hero-poster.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Thomas Eduardo | Product Engineer",
+        alt: "Thomas Eduardo | Full Stack Software Engineer",
       },
     ],
     locale: "pt_BR",
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Thomas Eduardo | Product Engineer",
+    title: "Thomas Eduardo | Full Stack Software Engineer",
     description:
-      "Transformando problemas complexos em experiências digitais premium.",
-    images: ["/hero-poster.jpg"],
+      "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
