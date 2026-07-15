@@ -17,7 +17,7 @@ export function Hero() {
     const v = videoRef.current
     if (!v || reduceMotion) return
     v.playbackRate = 0.65
-    void v.play().catch(() => {})
+    void v.play().catch(() => { })
   }, [reduceMotion])
 
   return (
@@ -25,14 +25,14 @@ export function Hero() {
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          src="/hero.mp4"
+          src="/hero-thomas.mp4"
           poster="/hero-poster.jpg"
           autoPlay={!reduceMotion}
           muted
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover opacity-90 sm:opacity-85"
+          className="absolute inset-0 h-full w-full object-cover object-[center_30%] opacity-90 sm:opacity-85"
           aria-hidden
         />
         <div className="absolute inset-0 bg-black/20 sm:bg-black/15" />
