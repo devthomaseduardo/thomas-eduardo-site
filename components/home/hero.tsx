@@ -21,7 +21,7 @@ export function Hero() {
   }, [reduceMotion])
 
   return (
-    <section className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-black">
+    <section className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-black" data-hide-cursor>
       <div className="absolute inset-0">
         <video
           ref={videoRef}
@@ -100,29 +100,45 @@ function AnimatedCursor() {
         opacity: [0, 1, 1, 1, 0],
       }}
       transition={{
-        duration: 15.45,
+        duration: 30.9,
         ease: "easeInOut",
         times: [0, 0.25, 0.65, 0.9, 1],
         repeat: Infinity,
         repeatDelay: 0,
       }}
-      className="pointer-events-none absolute left-0 top-0 z-50 flex h-8 w-8 items-center justify-center drop-shadow-2xl"
+      className="pointer-events-none absolute left-0 top-0 z-50 flex h-8 w-8 items-center justify-center"
     >
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.45 0 .67-.54.35-.85L6.35 3.35c-.24-.24-.85-.07-.85.35Z"
-          fill="#ffffff"
-          stroke="#000000"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-      </svg>
+      {/* Soft ambient light */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          width: 110,
+          height: 110,
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 35%, rgba(255,255,255,0) 70%)",
+          filter: "blur(2px)",
+        }}
+      />
+
+      {/* Mid halo */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          width: 32,
+          height: 32,
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.12) 40%, transparent 70%)",
+        }}
+      />
+
+      {/* Bright core */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_18px_8px_rgba(255,255,255,0.3)]"
+        style={{
+          width: 5,
+          height: 5,
+        }}
+      />
     </motion.div>
   )
 }

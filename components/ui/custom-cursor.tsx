@@ -46,6 +46,13 @@ export function CustomCursor() {
     const onOver = (e: MouseEvent) => {
       const el = e.target as HTMLElement | null
       if (!el) return
+      
+      if (el.closest("[data-hide-cursor]")) {
+        setHidden(true)
+      } else {
+        setHidden(false)
+      }
+
       const interactive = el.closest(
         "a, button, [role='button'], input, textarea, select, label, .btn-cta, .btn-solid-pill, .btn-outline-pill, .clickable, [data-cursor]",
       )
