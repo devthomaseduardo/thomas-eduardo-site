@@ -32,12 +32,12 @@ export function Hero() {
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover opacity-60 sm:opacity-55"
+          className="absolute inset-0 h-full w-full object-cover opacity-90 sm:opacity-85"
           aria-hidden
         />
-        <div className="absolute inset-0 bg-black/35 sm:bg-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
+        <div className="absolute inset-0 bg-black/20 sm:bg-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
       </div>
 
       <div className="site-shell relative z-10 w-full pb-[max(4.5rem,env(safe-area-inset-bottom)+3.25rem)] pt-24 sm:pb-20 md:pb-24">
