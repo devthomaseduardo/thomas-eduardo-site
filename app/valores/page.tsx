@@ -108,7 +108,7 @@ export default function ProcessPage() {
                 <p className="font-mono text-[10px] tracking-widest text-white/35">
                   {item.step}
                 </p>
-                <h3 className="mt-2 font-display text-sm font-semibold uppercase tracking-[0.04em] text-foreground sm:text-base">
+                <h3 className="mt-2 text-sm font-medium tracking-[0.01em] text-foreground sm:text-base">
                   {item.title}
                 </h3>
                 <p className="mt-1.5 text-sm font-light leading-relaxed text-muted-foreground">
@@ -138,7 +138,7 @@ export default function ProcessPage() {
                 <div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80">
                   <Icon icon={item.icon} className="size-4" />
                 </div>
-                <span className="font-display text-[10px] font-semibold uppercase tracking-[0.08em] text-white/80 sm:text-xs">
+                <span className="text-[10px] font-medium tracking-[0.02em] text-white/80 sm:text-xs">
                   {item.label}
                 </span>
               </motion.div>
@@ -235,7 +235,7 @@ export default function ProcessPage() {
                     <MessageCircleQuestion className="size-3.5" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-display text-sm font-semibold uppercase tracking-[0.03em] text-white">
+                    <h3 className="text-sm font-medium tracking-[0.01em] text-white">
                       {item.q}
                     </h3>
                     <p className="mt-1.5 text-sm font-light leading-relaxed text-white/55">

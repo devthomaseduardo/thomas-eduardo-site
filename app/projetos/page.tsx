@@ -51,7 +51,7 @@ function ProjectItem({
         <div className="flex flex-col justify-between p-4 sm:p-5 md:p-6">
           <div>
             <p className="label-kicker text-white/40">{project.tag}</p>
-            <h2 className="mt-1.5 font-display text-lg font-semibold uppercase tracking-[0.02em] text-foreground sm:text-xl md:text-2xl">
+            <h2 className="mt-1.5 text-lg font-medium tracking-tight text-foreground sm:text-xl md:text-2xl">
               {project.title}
             </h2>
             <p className="mt-1 text-xs font-light text-muted-foreground sm:text-sm">

@@ -95,10 +95,10 @@ export default function SobrePage() {
               className="relative overflow-hidden rounded-2xl border border-border/30 bg-white/[0.02] p-6 sm:p-8 lg:col-span-7 lg:rounded-3xl lg:p-10"
             >
               <p className="label-kicker mb-4">Perfil</p>
-              <h2 className="font-display text-2xl font-extrabold uppercase tracking-[-0.03em] text-white sm:text-3xl md:text-4xl">
+              <h2 className="text-h2 font-normal tracking-[-0.02em] text-foreground">
                 Produtos digitais
                 <br />
-                <span className="text-white/65">do zero à produção.</span>
+                <span className="text-muted-foreground">do zero à produção.</span>
               </h2>
               <p className="mt-4 max-w-lg text-sm font-light leading-relaxed text-white/70 sm:text-base">
                 Full Stack com 3+ anos de freela. Transformo processos manuais em
@@ -134,7 +134,7 @@ export default function SobrePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                <p className="font-display text-sm font-semibold uppercase tracking-[0.06em] text-white">
+                <p className="text-sm font-medium tracking-tight text-white">
                   Engenharia de Software
                 </p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/55">
@@ -161,10 +161,10 @@ export default function SobrePage() {
                   i < 3 ? "lg:border-r lg:border-border/25" : "lg:border-r-0"
                 }`}
               >
-                <p className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+                <p className="text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl">
                   {m.value}
                 </p>
-                <p className="mt-2 font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80">
+                <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-white/80">
                   {m.label}
                 </p>
                 <p className="mt-1 text-xs font-light text-white/55 sm:text-sm">
@@ -197,7 +197,7 @@ export default function SobrePage() {
                 <span className="font-mono text-[10px] tracking-widest text-white/40">
                   {p.n}
                 </span>
-                <h3 className="mt-3 font-display text-lg font-semibold uppercase tracking-[0.03em] text-white">
+                <h3 className="mt-3 text-lg font-medium tracking-[0.01em] text-white">
                   {p.title}
                 </h3>
                 <p className="mt-2 text-sm font-light leading-relaxed text-white/65">
@@ -248,7 +248,7 @@ export default function SobrePage() {
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="font-display text-base font-semibold uppercase tracking-[0.03em] text-white sm:text-lg">
+                    <h3 className="text-base font-medium tracking-[0.01em] text-white sm:text-lg">
                       {item.title}
                     </h3>
                     <p className="mt-1.5 max-w-xl text-sm font-light leading-relaxed text-white/65">
@@ -313,10 +313,10 @@ export default function SobrePage() {
         />
         <div className="site-shell relative text-center">
           <p className="label-kicker mb-3 text-white/45">Próximo passo</p>
-          <h2 className="font-display text-3xl font-extrabold uppercase tracking-[-0.03em] text-white sm:text-4xl md:text-5xl">
+          <h2 className="text-h2 font-normal tracking-[-0.02em] text-foreground">
             Tem um projeto
             <br />
-            <span className="text-white/55">em mente?</span>
+            <span className="text-muted-foreground">em mente?</span>
           </h2>
           <p className="mx-auto mt-4 max-w-sm text-sm font-light text-white/60">
             Vamos transformar a ideia em produto real — com clareza de escopo e
