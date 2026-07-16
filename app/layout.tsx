@@ -42,36 +42,40 @@ const SITE_URL = "https://thomaseduardo.com.br"
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Thomas Eduardo | Full Stack Software Engineer",
-    template: "%s | Thomas Eduardo",
+    default: "Thomas Eduardo | Full Stack Software Engineer | São Paulo",
+    template: "%s | Thomas Eduardo | Full Stack Engineer",
   },
   description:
-    "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
+    "Thomas Eduardo | Engenheiro de Software Full Stack em São Paulo. Especialista em Next.js, TypeScript, React e soluções digitais modernas, performáticas e escaláveis. Portfólio com projetos reais, processo de engenharia estruturado e resultados comprovados.",
   keywords: [
-    "Desenvolvedor Full Stack",
-    "Product Engineer",
+    "Thomas Eduardo",
+    "Desenvolvedor Full Stack São Paulo",
     "Engenheiro de Software",
+    "Full Stack Developer Brazil",
+    "Next.js Developer",
+    "TypeScript Engineer",
+    "React Developer São Paulo",
+    "Product Engineer",
     "Desenvolvedor Web São Paulo",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Criação de Sites",
+    "Criação de Sites Profissionais",
+    "Portfólio Desenvolvedor Full Stack",
+    "TERON OS",
+    "Soluções Digitais Escaláveis",
   ],
   authors: [{ name: "Thomas Eduardo R. Nascimento", url: SITE_URL }],
   creator: "Thomas Eduardo R. Nascimento",
   openGraph: {
-    title: "Thomas Eduardo | Full Stack Software Engineer",
+    title: "Thomas Eduardo | Full Stack Software Engineer | São Paulo",
     description:
-      "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
+      "Engenheiro de Software Full Stack em São Paulo. Construindo soluções digitais modernas, performáticas e escaláveis com Next.js, TypeScript e arquitetura limpa.",
     url: SITE_URL,
-    siteName: "Thomas Eduardo",
+    siteName: "Thomas Eduardo | Full Stack Engineer",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Thomas Eduardo | Full Stack Software Engineer",
+        alt: "Thomas Eduardo | Full Stack Software Engineer - Portfólio Profissional",
       },
     ],
     locale: "pt_BR",
@@ -79,9 +83,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Thomas Eduardo | Full Stack Software Engineer",
+    title: "Thomas Eduardo | Full Stack Software Engineer | São Paulo",
     description:
-      "Desenvolvedor Full Stack. Construindo soluções digitais modernas, performáticas e escaláveis.",
+      "Desenvolvedor Full Stack em São Paulo. Next.js, TypeScript, React e soluções digitais escaláveis.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -102,12 +106,18 @@ const jsonLd = {
   "@type": "Person",
   name: "Thomas Eduardo R. Nascimento",
   url: SITE_URL,
-  jobTitle: "Desenvolvedor Full Stack",
+  jobTitle: "Desenvolvedor Full Stack | Engenheiro de Software",
   description:
-    "Desenvolvedor Full Stack em São Paulo focado em aplicações web, portais, dashboards, APIs e landing pages.",
+    "Engenheiro de Software Full Stack em São Paulo especializado em aplicações web modernas, portais, dashboards, APIs e landing pages com Next.js, TypeScript e arquitetura escalável.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "São Paulo",
+    addressCountry: "BR",
+  },
   sameAs: [
     "https://github.com/devthomaseduardo",
     "https://linkedin.com/in/devthomaseduardo",
+    "https://www.thomaseduardo.com.br",
   ],
 }
 
