@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
 import {
   motion,
@@ -20,101 +20,91 @@ export function ProjectCard({
   project: (typeof PROJECTS)[0]
   index: number
 }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const reduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "start start"],
-  })
-
-  // Subtle scroll entrance — keep opacity high so text/stack stay readable
-  const scale = useTransform(scrollYProgress, [0, 1], [0.97, 1])
-  const y = useTransform(scrollYProgress, [0, 1], [28, 0])
+  const [flipped, setFlipped] = useState(false)
 
   return (
-    <motion.div
-      ref={cardRef}
-      style={
-        reduceMotion
-          ? undefined
-          : {
-              scale,
-              y,
-              transformPerspective: 1200,
-              transformOrigin: "center top",
-            }
-      }
-      className="w-full"
+    <div 
+      className="w-full h-[400px] sm:h-[480px] lg:h-[550px] relative cursor-pointer [perspective:1200px]"
+      onClick={() => setFlipped(!flipped)}
     >
-      <Tilt3D
-        max={6}
-        scale={1.01}
-        className="overflow-hidden rounded-xl border border-white/12 bg-[#121212] sm:rounded-2xl"
-        contentClassName="overflow-hidden rounded-[inherit] bg-[#121212]"
+      <motion.div
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 20 }}
+        className="w-full h-full relative [transform-style:preserve-3d]"
       >
-        <div className="grid lg:grid-cols-2">
-          <div className="relative order-1 h-48 overflow-hidden bg-black sm:h-56 lg:h-auto lg:min-h-[300px]">
-            <Image
-              src={project.image || "/placeholder.svg"}
-              alt={project.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover/tilt:scale-[1.05]"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+        {/* FRONT */}
+        <div className="absolute inset-0 [backface-visibility:hidden] overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-[#121212]">
+          <Image
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 hover:scale-[1.05]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          
+          <div className="absolute left-4 top-4">
+            <span className="rounded-full border border-white/15 bg-black/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/85 backdrop-blur-md">
+              {String(index + 1).padStart(2, "0")} · {project.tag}
+            </span>
+          </div>
 
-            <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
-              <span className="rounded-full border border-white/15 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-white/85 backdrop-blur-md sm:px-3 sm:text-[10px]">
-                {String(index + 1).padStart(2, "0")}
-                <span className="hidden sm:inline"> · {project.tag}</span>
-              </span>
+          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white drop-shadow-md">
+                {project.title}
+              </h3>
+              <p className="mt-1 text-sm font-light text-white/80 drop-shadow-md">
+                {project.subtitle}
+              </p>
             </div>
-
             {project.year && (
-              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4">
-                <span className="rounded-full border border-white/15 bg-black/70 px-2 py-0.5 font-mono text-[10px] text-white/70 backdrop-blur-md sm:px-2.5 sm:py-1 sm:text-[11px]">
-                  {project.year}
-                </span>
-              </div>
+              <span className="rounded-full border border-white/15 bg-black/70 px-2.5 py-1 font-mono text-[11px] text-white/70 backdrop-blur-md">
+                {project.year}
+              </span>
             )}
           </div>
 
-          <div className="order-2 flex flex-col justify-between bg-[#121212] p-4 sm:p-6 md:p-8 lg:p-10">
-            <div>
-              <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl md:text-3xl">
-                {project.title}
-              </h3>
-              <p className="mt-1.5 text-sm font-normal leading-snug text-white/65 sm:text-[15px] md:text-base">
-                {project.subtitle}
-              </p>
-
-              <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-[15px]">
-                {project.description}
-              </p>
-
-              <div className="mt-5">
-                <p className="label-kicker mb-1.5 text-white/45">Resultado</p>
-                <p className="text-sm leading-relaxed text-white/80">
-                  {project.result}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
-              <p className="label-kicker mb-2.5 text-white/45">Tecnologias</p>
-              <TechIconRow stack={project.stack} max={7} />
-
-              {project.href && (
-                <div className="mt-4 sm:mt-5">
-                  <CtaLink href={project.href} variant="soft" size="sm" external>
-                    Ver projeto
-                  </CtaLink>
-                </div>
-              )}
-            </div>
+          {/* Flip indicator */}
+          <div className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" y1="22" x2="12" y2="12"></line></svg>
           </div>
         </div>
-      </Tilt3D>
-    </motion.div>
+
+        {/* BACK */}
+        <div 
+          className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-[#121212] p-6 sm:p-8 flex flex-col justify-between"
+        >
+          <div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-white">
+              {project.title}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-[15px]">
+              {project.description}
+            </p>
+
+            <div className="mt-5">
+              <p className="label-kicker mb-1.5 text-white/45">Resultado</p>
+              <p className="text-sm leading-relaxed text-white/80">
+                {project.result}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 border-t border-white/10 pt-4 sm:mt-5 sm:pt-5">
+            <p className="label-kicker mb-2.5 text-white/45">Tecnologias</p>
+            <TechIconRow stack={project.stack} max={7} />
+
+            {project.href && (
+              <div className="mt-6">
+                <CtaLink href={project.href} variant="soft" size="sm" external>
+                  Ver projeto
+                </CtaLink>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </div>
   )
 }
