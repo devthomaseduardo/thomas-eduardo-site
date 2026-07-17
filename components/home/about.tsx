@@ -76,7 +76,32 @@ export function About() {
               </p>
             </motion.div>
 
+<<<<<<< HEAD
             <div className="flex flex-col gap-3" style={{ perspective: "1000px" }}>
+=======
+            <div className="sm:hidden">
+              <div className="flex flex-col gap-4">
+                {PILLARS.map((p) => (
+                  <div
+                    key={p.number}
+                    className="flex h-full flex-col rounded-2xl border border-border/30 bg-card/30 p-5"
+                  >
+                    <div className="font-mono text-[10px] font-medium tracking-[0.08em] text-muted-foreground/50">
+                      {p.number}
+                    </div>
+                    <h3 className="mt-3 font-display text-lg font-semibold tracking-[-0.01em]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {p.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden space-y-2 sm:block" style={{ perspective: "1000px" }}>
+>>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
               {PILLARS.map((p, index) => (
                 <motion.div
                   key={p.number}

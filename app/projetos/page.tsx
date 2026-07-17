@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { PROJECTS } from "@/lib/data"
+import { PROJECTS, CONTACT } from "@/lib/data"
 import { motion } from "framer-motion"
 import { ClientsCarousel } from "@/components/home/clients-carousel"
 import { PageAnimator } from "@/components/page-animator"
@@ -9,7 +9,6 @@ import { PageHero } from "@/components/page-hero"
 import { TechIconRow } from "@/components/tech-icon"
 import { CtaLink } from "@/components/ui/cta"
 import { ExternalLink } from "lucide-react"
-import { MobileCarousel } from "@/components/ui/mobile-carousel"
 
 function ProjectItem({
   project,
@@ -105,20 +104,37 @@ export default function ProjetosPage() {
       </div>
 
       <section className="site-shell pb-14 sm:pb-20">
-        <div className="sm:hidden">
-          <MobileCarousel
-            itemClassName="w-[min(90vw,22rem)]"
-            desktopClassName=""
-          >
-            {PROJECTS.map((project, i) => (
-              <ProjectItem key={project.title} project={project} index={i} />
-            ))}
-          </MobileCarousel>
-        </div>
-        <div className="hidden flex-col gap-4 sm:flex sm:gap-5">
+        <div className="flex flex-col gap-4 sm:gap-5">
           {PROJECTS.map((project, i) => (
             <ProjectItem key={project.title} project={project} index={i} />
           ))}
+        </div>
+
+        <div className="mt-12 sm:mt-16 overflow-hidden rounded-xl border border-white/12 bg-[#121212] sm:rounded-2xl relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
+          <div className="grid md:grid-cols-2 gap-6 p-6 sm:p-8 md:p-10 items-center">
+            <div className="relative z-10">
+              <p className="label-kicker text-white/45 mb-2">Open Source</p>
+              <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-3">
+                Quer ver mais projetos?
+              </h3>
+              <p className="text-white/70 leading-relaxed mb-6 max-w-md text-sm sm:text-base">
+                Confira meu GitHub para explorar mais códigos, contribuições e a arquitetura detalhada de outros experimentos técnicos.
+              </p>
+              <CtaLink href={CONTACT.github} variant="solid" size="md" external>
+                Acessar meu GitHub
+              </CtaLink>
+            </div>
+            <div className="relative z-10 aspect-[16/10] sm:aspect-video rounded-lg overflow-hidden border border-white/10 shadow-2xl bg-white/5 flex items-center justify-center">
+              <p className="text-white/30 text-xs absolute z-0">Salve a imagem em public/images/github-profile.png</p>
+              <Image
+                src="/images/github-profile.png"
+                alt="Thomas Eduardo GitHub Profile"
+                fill
+                className="object-cover object-top opacity-80 hover:opacity-100 transition-opacity duration-500 z-10"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </main>

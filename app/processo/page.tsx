@@ -9,7 +9,6 @@ import { PageAnimator } from "@/components/page-animator"
 import { Icon } from "@iconify/react"
 import { CtaLink } from "@/components/ui/cta"
 import { PageHero } from "@/components/page-hero"
-import { MobileCarousel } from "@/components/ui/mobile-carousel"
 
 const STEPS = [
   { step: "01", title: "Conversa", text: "Você explica a ideia e o objetivo.", image: "/images/process/process_conversa.png" },
