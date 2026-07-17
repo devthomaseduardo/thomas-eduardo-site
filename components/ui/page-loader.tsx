@@ -12,8 +12,6 @@ import { usePathname } from "next/navigation"
 export function PageLoader() {
   const pathname = usePathname()
   const reduceMotion = useReducedMotion()
-  const [progress, setProgress] = useState(0)
-  const [phase, setPhase] = useState<"loading" | "exit" | "done">("loading")
 
   const skip =
     pathname === "/linkbio" ||
@@ -22,20 +20,25 @@ export function PageLoader() {
     pathname?.startsWith("/r/") ||
     pathname?.startsWith("/proposta")
 
+  const [progress, setProgress] = useState(0)
+  const [phase, setPhase] = useState<"loading" | "exit" | "done">("loading")
+
+  // Skip routes: only clean up boot classes (render already returns null)
   useEffect(() => {
-    if (skip) {
-      document.documentElement.classList.remove("loader-boot", "loader-active")
-      setPhase("done")
-      return
-    }
+    if (!skip) return
+    document.documentElement.classList.remove("loader-boot", "loader-active")
+  }, [skip])
+
+  useEffect(() => {
+    if (skip) return
 
     // CSS ::before cover can drop once React paints the real loader
     document.documentElement.classList.remove("loader-boot")
     document.documentElement.classList.add("loader-active")
 
     if (reduceMotion) {
-      setProgress(100)
       const t = setTimeout(() => {
+        setProgress(100)
         setPhase("done")
         document.documentElement.classList.remove("loader-active")
       }, 80)

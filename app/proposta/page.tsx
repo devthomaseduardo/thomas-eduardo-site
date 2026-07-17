@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { Check, ArrowRight } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PrintButton } from "@/components/print-button"
@@ -143,13 +144,13 @@ export default function PropostaPage() {
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           Se estiver de acordo, alinhamos os detalhes finais e eu te envio a proposta fechada com prazo e valor.
         </p>
-        <a
+        <Link
           href="/r/wa"
           className="group mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98] print:hidden"
         >
           Iniciar conversa
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-        </a>
+        </Link>
         <p className="mt-6 font-mono text-xs text-muted-foreground">
           {CONTACT.email} · {CONTACT.phone} · CNPJ {CONTACT.cnpj}
         </p>
