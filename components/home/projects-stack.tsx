@@ -21,7 +21,7 @@ export function ProjectsStack({
   })
 
   // Extra end slot (arrow) needs a bit more horizontal travel
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-88%"])
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"])
 
   const scrollToNextSection = () => {
     const section = containerRef.current
@@ -78,8 +78,8 @@ export function ProjectsStack({
           </div>
         )}
 
-        <div className="mt-16 flex w-full items-center pl-[max(env(safe-area-inset-left),6vw)] sm:mt-0 sm:pl-[max(env(safe-area-inset-left),4vw)]">
-          <motion.div style={{ x }} className="flex items-center gap-6 pr-[10vw] sm:gap-8">
+        <div className="mt-16 flex w-full items-center pl-[max(env(safe-area-inset-left),1vw)] sm:mt-0 sm:pl-[max(env(safe-area-inset-left),4vw)]">
+          <motion.div style={{ x }} className="flex items-center gap-6 pr-6 sm:gap-8 sm:pr-12">
             {projects.map((project, i) => (
               <div
                 key={project.title}
@@ -90,7 +90,7 @@ export function ProjectsStack({
             ))}
 
             {/* End cue: large modern animated arrow pointing down */}
-            <div className="flex w-[min(72vw,22rem)] flex-shrink-0 items-center justify-center sm:w-[320px] lg:w-[380px]">
+            <div className="flex w-24 flex-shrink-0 items-center justify-center sm:w-32 lg:w-40">
               <button
                 type="button"
                 onClick={scrollToNextSection}
