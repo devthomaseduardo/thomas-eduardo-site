@@ -76,7 +76,7 @@ export function About() {
               </p>
             </motion.div>
 
-            <div className="flex flex-col gap-3" style={{ perspective: "1000px" }}>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3" style={{ perspective: "1000px" }}>
               {PILLARS.map((p, index) => (
                 <motion.div
                   key={p.number}
@@ -85,9 +85,9 @@ export function About() {
                   whileHover={{ y: -2, scale: 1.005 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex gap-5 rounded-2xl border border-border/20 bg-transparent px-5 py-5 transition-colors hover:border-border/40 hover:bg-white/[0.02] sm:gap-6 sm:px-6"
+                  className="group flex flex-col gap-4 rounded-2xl border border-border/20 bg-transparent px-5 py-5 transition-colors hover:border-border/40 hover:bg-white/[0.02] sm:px-6"
                 >
-                  <div className="mt-1 w-8 shrink-0 font-mono text-sm font-medium text-muted-foreground/40">
+                  <div className="w-8 shrink-0 font-mono text-sm font-medium text-muted-foreground/40">
                     {p.number}
                   </div>
                   <div>
