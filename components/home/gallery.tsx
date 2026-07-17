@@ -14,7 +14,6 @@ export function Gallery() {
       <div className="site-shell">
         <div className="mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="label-kicker mb-2 text-muted-foreground/50">Explorar</p>
             <h2 className="text-h2 text-foreground">Galeria visual.</h2>
             <p className="mt-2 max-w-md text-sm text-muted-foreground">
               Interfaces, sistemas e experiências que construí para clientes e projetos próprios.
