@@ -86,7 +86,7 @@ export function CustomCursor() {
 
   if (!capable) return null
 
-  const glow = hover ? (click ? 120 : 160) : click ? 70 : 110
+  const halo = hover ? (click ? 28 : 36) : click ? 20 : 24
   const core = hover ? (click ? 6 : 8) : click ? 4 : 5
 
   return (
@@ -98,30 +98,7 @@ export function CustomCursor() {
         transition: "opacity 0.25s ease",
       }}
     >
-      {/* Soft ambient light */}
-      <motion.div
-        className="absolute top-0 left-0 rounded-full"
-        style={{
-          x: lightX,
-          y: lightY,
-          translateX: "-50%",
-          translateY: "-50%",
-          width: glow,
-          height: glow,
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 35%, rgba(255,255,255,0) 70%)",
-          filter: "blur(2px)",
-        }}
-        animate={{
-          width: glow,
-          height: glow,
-          opacity: hover ? 1 : 0.85,
-          scale: click ? 0.9 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 280, damping: 28 }}
-      />
-
-      {/* Mid halo */}
+      {/* Soft halo */}
       <motion.div
         className="absolute top-0 left-0 rounded-full"
         style={{
@@ -130,11 +107,11 @@ export function CustomCursor() {
           translateX: "-50%",
           translateY: "-50%",
           background:
-            "radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.12) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.1) 45%, transparent 70%)",
         }}
         animate={{
-          width: hover ? 48 : 32,
-          height: hover ? 48 : 32,
+          width: halo,
+          height: halo,
           opacity: hover ? 0.95 : 0.7,
           scale: click ? 0.85 : 1,
         }}
@@ -143,7 +120,7 @@ export function CustomCursor() {
 
       {/* Bright core */}
       <motion.div
-        className="absolute top-0 left-0 rounded-full bg-white shadow-[0_0_20px_8px_rgba(255,255,255,0.35)]"
+        className="absolute top-0 left-0 rounded-full bg-white shadow-[0_0_14px_6px_rgba(255,255,255,0.28)]"
         style={{
           x: coreX,
           y: coreY,
@@ -154,8 +131,8 @@ export function CustomCursor() {
           width: core,
           height: core,
           boxShadow: hover
-            ? "0 0 28px 12px rgba(255,255,255,0.45)"
-            : "0 0 18px 8px rgba(255,255,255,0.3)",
+            ? "0 0 18px 8px rgba(255,255,255,0.35)"
+            : "0 0 12px 5px rgba(255,255,255,0.25)",
         }}
         transition={{ type: "spring", stiffness: 500, damping: 28 }}
       />

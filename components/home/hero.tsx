@@ -67,7 +67,6 @@ export function Hero() {
     <section 
       ref={containerRef}
       className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-black perspective-[1400px]"
-      data-hide-cursor
       data-hero-container
     >
       <motion.div 
