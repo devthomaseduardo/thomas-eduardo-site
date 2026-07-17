@@ -5,11 +5,7 @@ import Link from "next/link"
 import { PROJECTS } from "@/lib/data"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ProjectCard } from "@/components/project-card"
-<<<<<<< HEAD
 import { ArrowDown, ArrowRight } from "lucide-react"
-=======
-import { ArrowRight, ChevronDown } from "lucide-react"
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
 
 export function ProjectsStack({
   projects = PROJECTS.slice(0, 6),
@@ -82,13 +78,8 @@ export function ProjectsStack({
           </div>
         )}
 
-<<<<<<< HEAD
         <div className="mt-16 flex w-full items-center pl-[max(env(safe-area-inset-left),6vw)] sm:mt-0 sm:pl-[max(env(safe-area-inset-left),4vw)]">
           <motion.div style={{ x }} className="flex items-center gap-6 pr-[10vw] sm:gap-8">
-=======
-        <div className="flex w-full items-center pl-[max(env(safe-area-inset-left),6vw)] sm:pl-[max(env(safe-area-inset-left),4vw)] mt-16 sm:mt-0">
-          <motion.div style={{ x }} className="flex gap-4 sm:gap-6 pr-4 sm:pr-8 items-center">
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
             {projects.map((project, i) => (
               <div
                 key={project.title}
@@ -97,7 +88,6 @@ export function ProjectsStack({
                 <ProjectCard project={project} index={i} />
               </div>
             ))}
-<<<<<<< HEAD
 
             {/* End cue: large modern animated arrow pointing down */}
             <div className="flex w-[min(72vw,22rem)] flex-shrink-0 items-center justify-center sm:w-[320px] lg:w-[380px]">
@@ -143,20 +133,6 @@ export function ProjectsStack({
                   style={{ originY: 0 }}
                 />
               </button>
-=======
-            {/* Animated Down Arrow at the end */}
-            <div className="flex flex-col items-center justify-center w-16 sm:w-24 flex-shrink-0 h-full gap-3">
-              <motion.div 
-                animate={{ y: [0, 8, 0] }} 
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="flex items-center justify-center size-12 sm:size-16 rounded-full border border-white/10 bg-white/[0.02] text-white/60"
-              >
-                <ChevronDown className="size-5 sm:size-6" strokeWidth={1.5} />
-              </motion.div>
-              <span className="uppercase text-white/30 text-[9px] tracking-[0.2em] font-mono text-center">
-                Descer
-              </span>
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
             </div>
           </motion.div>
         </div>

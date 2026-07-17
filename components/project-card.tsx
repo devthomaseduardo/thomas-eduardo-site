@@ -37,13 +37,8 @@ export function ProjectCard({
     >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
-<<<<<<< HEAD
         transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 20 }}
         className="relative h-full w-full [transform-style:preserve-3d]"
-=======
-        transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 10 }}
-        className="w-full h-full relative [transform-style:preserve-3d]"
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
       >
         {/* FRONT */}
         <div className="absolute inset-0 overflow-hidden rounded-xl border border-white/10 bg-[#121212] [backface-visibility:hidden] sm:rounded-2xl">
@@ -92,15 +87,6 @@ export function ProjectCard({
               </span>
             )}
           </div>
-<<<<<<< HEAD
-=======
-
-          {/* Flip indicator */}
-          <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-white backdrop-blur-md border border-white/20 hover:bg-black/80 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse lucide lucide-mouse-pointer-click"><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg>
-            <span className="text-[10px] font-medium uppercase tracking-[0.1em] font-mono">Clique para Info</span>
-          </div>
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
         </div>
 
         {/* BACK */}

@@ -87,11 +87,7 @@ export function TechExpertise() {
           </motion.p>
         </div>
 
-<<<<<<< HEAD
         <div className="flex flex-col gap-3">
-=======
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4">
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
           {EXPERTISE.map((group, i) => (
             <div
               key={group.category}

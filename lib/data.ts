@@ -247,7 +247,6 @@ export const PROJECTS: Project[] = [
     tag: "Landing Page",
     title: "Instituto Kell",
     subtitle: "Clínica médica multidisciplinar",
-<<<<<<< HEAD
     context:
       "Necessidade de apresentar o corpo clínico e facilitar agendamentos diários via WhatsApp de forma organizada.",
     problem:
@@ -262,15 +261,6 @@ export const PROJECTS: Project[] = [
       "Fluxo de atendimento simplificado, com menos ligações longas e mais consultas agendadas digitalmente.",
     description:
       "Landing page limpa e humanizada para agendamento rápido, com conversão direta para o corpo clínico.",
-=======
-    context: "Necessidade de apresentar o corpo clínico e facilitar agendamentos diários via WhatsApp de forma organizada.",
-    problem: "Alta fricção na marcação de consultas por telefone e pacientes confusos sobre as especialidades disponíveis.",
-    architecture: "SPA em React super leve com roteamento client-side para navegação fluida.",
-    solution: "Apresentação limpa (clean design), perfis dos profissionais e integração direta ao WhatsApp da recepção para cada especialidade.",
-    challenges: "Acessibilidade e usabilidade voltadas a um público de faixa etária mais ampla.",
-    result: "Automação de 100% do funil de vendas para o Instituto Kell e agendamentos.",
-    description: "Landing page limpa e humanizada para agendamento rápido, focado em conversão direta para o corpo clínico.",
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
     bullets: [
       "Filtros de especialidades",
       "Clean & acessível",
@@ -284,7 +274,6 @@ export const PROJECTS: Project[] = [
   {
     tag: "Landing Page · Workstations",
     title: "Hazap Workstation",
-<<<<<<< HEAD
     subtitle: "Estações de trabalho de alta performance",
     context:
       "Landing da Hazap para workstations personalizadas voltadas a arquitetura, engenharia, IA e desenvolvimento de software.",
@@ -300,16 +289,6 @@ export const PROJECTS: Project[] = [
       "Showroom digital de workstations com pipeline comercial via WhatsApp e SEO/OG configurados.",
     description:
       "Site institucional Hazap Workstation: workstations sob medida, prova social e conversão via WhatsApp.",
-=======
-    subtitle: "Gestão inteligente para coworking",
-    context: "Espaço de escritórios B2B precisava organizar disponibilidade de salas e posições virtuais.",
-    problem: "Ocupação não otimizada por falta de visualização pública e clara de espaços.",
-    architecture: "Interface administrativa complexa consumindo APIs REST.",
-    solution: "Catálogo de espaços com visualização interativa e sistema de solicitação de aluguel facilitado.",
-    challenges: "Gestão visual de grids e plantas de escritório.",
-    result: "Aumento de +40% na taxa de conversão em projeto para Hazap Informática.",
-    description: "Solução B2B para visualização e captação comercial de um espaço corporativo e coworking.",
->>>>>>> fa725b4 (feat: modernize home sections, update stack data, and refine UI components)
     bullets: [
       "Fluxo comercial em página única",
       "CTAs WhatsApp contextualizados",

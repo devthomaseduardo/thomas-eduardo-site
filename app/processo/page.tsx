@@ -376,7 +376,7 @@ export default function ProcessPage() {
               <p className="mx-auto max-w-md text-base font-light leading-relaxed text-white/60 mb-10">
                 Após nosso papo inicial, você recebe uma proposta completa com escopo, cronograma e investimento.
               </p>
-              <CtaLink href={CONTACT.whatsapp} variant="solid" size="lg" className="px-10 py-5 text-sm uppercase tracking-widest shadow-xl" external>
+              <CtaLink href={CONTACT.whatsapp} variant="solid" size="md" className="px-10 py-5 text-sm uppercase tracking-widest shadow-xl" external>
                 Solicitar proposta
               </CtaLink>
             </div>
