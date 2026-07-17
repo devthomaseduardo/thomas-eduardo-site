@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { GithubIcon, LinkedinIcon } from "@/components/brand-icons"
+import { CONTACT } from "@/lib/data"
 
 export function SiteFooter() {
   const pathname = usePathname()
@@ -15,16 +16,16 @@ export function SiteFooter() {
     return null
 
   return (
-    <footer className="relative mt-auto border-t border-white/5 bg-black pt-10 pb-6">
+    <footer className="relative z-40 mt-auto border-t border-white/5 bg-black pt-10 pb-28 sm:pb-10">
       <div className="site-shell">
         <div className="mb-8 flex flex-col gap-6 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1">
             <p className="label-kicker text-white/55">Disponível para projetos</p>
             <a
-              href="mailto:devthomaseduardo@gmail.com"
+              href={`mailto:${CONTACT.email}`}
               className="text-sm font-light text-white/90 transition-colors hover:text-white sm:text-base"
             >
-              devthomaseduardo@gmail.com
+              {CONTACT.email}
             </a>
           </div>
 
@@ -44,20 +45,22 @@ export function SiteFooter() {
               </Link>
             ))}
             <a
-              href="https://github.com/devthomaseduardo"
+              href={CONTACT.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/45 transition-colors hover:text-white"
-              aria-label="GitHub"
+              className="relative z-50 text-white/45 transition-colors hover:text-white"
+              aria-label="GitHub de Thomas Eduardo"
+              title="GitHub"
             >
               <GithubIcon className="size-4" />
             </a>
             <a
-              href="https://linkedin.com/in/devthomaseduardo"
+              href={CONTACT.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/45 transition-colors hover:text-white"
-              aria-label="LinkedIn"
+              className="relative z-50 text-white/45 transition-colors hover:text-white"
+              aria-label="LinkedIn de Thomas Eduardo"
+              title="LinkedIn"
             >
               <LinkedinIcon className="size-4" />
             </a>
@@ -70,7 +73,7 @@ export function SiteFooter() {
           </p>
           <div className="flex flex-col items-center gap-1 font-mono text-[10px] text-white/30 sm:flex-row sm:gap-4 sm:text-[11px]">
             <p>© {new Date().getFullYear()} Thomas Eduardo</p>
-            <p className="hidden sm:inline text-white/15">·</p>
+            <p className="hidden text-white/15 sm:inline">·</p>
             <p>São Paulo, BR</p>
           </div>
         </div>
