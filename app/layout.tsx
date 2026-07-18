@@ -126,6 +126,14 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 }
 
+export const icons = {
+  icon: [
+    { url: "/favicon.ico", sizes: "any" },
+    { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+  ],
+  apple: "/favicon.png",
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
