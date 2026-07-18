@@ -1,4 +1,7 @@
 allowBuilds:
+  core-js: set this to true or false
   msw: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - posthog-js@1.404.1
