@@ -67,7 +67,29 @@ function ProjectItem({
             </div>
           </div>
 
-          <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-3 sm:mt-5">
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="mt-5 border-t border-white/10 pt-4">
+              <p className="label-kicker text-white/45 mb-1">Galeria</p>
+              <h3 className="text-sm font-medium tracking-tight text-white mb-3">
+                Interface e arquitetura em profundidade.
+              </h3>
+              <div className="grid grid-cols-3 gap-2">
+                {project.gallery.map((img, idx) => (
+                  <div key={img} className="group/gallery relative aspect-video rounded-md overflow-hidden border border-white/5 bg-white/5">
+                    <Image
+                      src={img}
+                      alt={`${project.title} - Galeria ${idx + 1}`}
+                      fill
+                      className="object-cover opacity-80 transition-all duration-500 group-hover/gallery:scale-105 group-hover/gallery:opacity-100"
+                      sizes="(max-width: 640px) 33vw, 15vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-4">
             <TechIconRow stack={project.stack} max={6} />
             {project.href ? (
               <CtaLink href={project.href} variant="soft" size="sm" external className="w-fit">

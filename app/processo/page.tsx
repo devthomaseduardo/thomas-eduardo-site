@@ -101,37 +101,8 @@ export default function ProcessPage() {
             <h2 className="text-h2 text-white">Como trabalhamos.</h2>
           </div>
 
-          {/* Mobile View */}
-          <div className="lg:hidden flex flex-col gap-6">
-            {STEPS.map((item) => (
-              <div
-                key={item.step}
-                className="card-animate group relative overflow-hidden rounded-[32px] border border-white/10 bg-[#121212] p-8 min-h-[400px] flex flex-col justify-end"
-              >
-                {/* Imagens MUITO mais visíveis no celular */}
-                <Image src={item.image} alt={item.title} fill className="object-cover opacity-60 mix-blend-screen transition-transform duration-700 group-hover:scale-105 group-hover:opacity-80" />
-                
-                {/* Degradê mais suave para deixar a imagem brilhar */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                
-                <div className="relative z-10">
-                  <span className="flex size-12 items-center justify-center rounded-xl border border-white/20 bg-white/10 font-display text-xl font-bold text-white transition-colors group-hover:bg-white/20">
-                    {item.step}
-                  </span>
-                  <h3 className="mt-4 text-2xl font-display font-semibold tracking-wide text-white drop-shadow-md">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-white/90 drop-shadow-sm">
-                    {item.text}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Desktop Interactive Accordion */}
-          <div className="hidden lg:flex h-[450px] w-full gap-3">
+          {/* Interactive Accordion (All screens) */}
+          <div className="flex h-[380px] sm:h-[450px] w-full gap-1.5 sm:gap-3">
             {STEPS.map((item, i) => {
               const isActive = activeStep === i
               return (
@@ -140,10 +111,10 @@ export default function ProcessPage() {
                   onHoverStart={() => setActiveStep(i)}
                   onClick={() => setActiveStep(i)}
                   animate={{ 
-                    width: isActive ? "45%" : "11%",
+                    width: isActive ? "50%" : "10%",
                   }}
                   transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                  className={`group relative overflow-hidden rounded-3xl border cursor-pointer ${
+                  className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border cursor-pointer ${
                     isActive ? "border-white/20 bg-white/[0.04] shadow-2xl" : "border-white/5 bg-[#0a0a0a] hover:bg-white/[0.02]"
                   }`}
                 >
@@ -152,13 +123,13 @@ export default function ProcessPage() {
                   
                   <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
                     <Image src={item.image} alt={item.title} fill className="object-cover opacity-70 mix-blend-screen transition-transform duration-[2s] group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 sm:via-black/20 to-transparent" />
                   </div>
                   
                   {/* Content Container */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
-                    <div className="flex items-center gap-4">
-                      <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border font-display text-xl font-bold transition-all duration-500 ${
+                  <div className="absolute inset-0 p-4 sm:p-8 flex flex-col justify-end z-10">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <span className={`flex size-8 sm:size-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border font-display text-sm sm:text-xl font-bold transition-all duration-500 ${
                         isActive ? "border-white/20 bg-white/10 text-white" : "border-white/10 bg-white/5 text-white/40"
                       }`}>
                         {item.step}
@@ -167,7 +138,7 @@ export default function ProcessPage() {
                       <motion.h3 
                         animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
                         transition={{ duration: 0.4, delay: isActive ? 0.1 : 0 }}
-                        className="text-3xl font-display font-semibold tracking-tight text-white whitespace-nowrap"
+                        className="text-xl sm:text-3xl font-display font-semibold tracking-tight text-white whitespace-nowrap"
                       >
                         {item.title}
                       </motion.h3>
@@ -177,12 +148,12 @@ export default function ProcessPage() {
                       animate={{ 
                         opacity: isActive ? 1 : 0, 
                         height: isActive ? "auto" : 0,
-                        marginTop: isActive ? "1rem" : "0"
+                        marginTop: isActive ? "0.5rem" : "0"
                       }}
                       transition={{ duration: 0.4, delay: isActive ? 0.2 : 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-[15px] font-light leading-relaxed text-white/70 max-w-sm pl-16">
+                      <p className="text-[13px] sm:text-[15px] font-light leading-relaxed text-white/80 sm:text-white/70 max-w-sm pl-11 sm:pl-16">
                         {item.text}
                       </p>
                     </motion.div>
@@ -194,7 +165,7 @@ export default function ProcessPage() {
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none"
                   >
-                    <span className="font-display text-xl font-semibold tracking-widest text-white/30 uppercase -rotate-90 whitespace-nowrap">
+                    <span className="font-display text-xs sm:text-xl font-semibold tracking-widest text-white/30 uppercase -rotate-90 whitespace-nowrap">
                       {item.title}
                     </span>
                   </motion.div>

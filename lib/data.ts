@@ -27,6 +27,7 @@ export type Project = {
   bullets: string[]
   stack: string[]
   image: string
+  gallery?: string[]
   href?: string
   year?: string
 }
@@ -35,6 +36,61 @@ export type Project = {
 export const PROJECTS: Project[] = [
 
   {
+    tag: "Produto SaaS",
+    title: "Áurea",
+    subtitle: "Plataforma de Gestão Inteligente",
+    context: "Desenvolvimento de um sistema completo para gestão e inteligência de negócios.",
+    problem: "Necessidade de centralizar operações e dados em uma única plataforma performática.",
+    architecture: "Arquitetura moderna escalável com React e integrações via API REST.",
+    solution: "Plataforma web rápida, responsiva e focada na experiência do usuário.",
+    challenges: "Garantir alta performance com grande volume de dados na interface.",
+    result: "Sistema entregue com sucesso, otimizando o tempo operacional.",
+    description: "Sistema Áurea: plataforma completa para gestão.",
+    bullets: ["Painel administrativo", "Gestão de dados em tempo real", "Alta performance"],
+    stack: ["React", "TypeScript", "Tailwind CSS"],
+    image: "/projects/aurea.webp",
+    gallery: ["/projects/aurea-1.png", "/projects/aurea-2.png", "/projects/aurea-3.png"],
+    href: "https://aurea.thomaseduardo.com.br/",
+    year: "2026",
+  },
+  {
+    tag: "Ferramenta Útil",
+    title: "Gerador de QR Code",
+    subtitle: "Criação rápida de QR Codes",
+    context: "Uma ferramenta prática e rápida para geração de QR Codes dinâmicos e estáticos.",
+    problem: "Muitas ferramentas de QR Code possuem excesso de anúncios ou fluxos complexos.",
+    architecture: "Aplicação frontend leve construída com React e Tailwind.",
+    solution: "Gerador limpo, direto ao ponto e sem atritos para o usuário.",
+    challenges: "Processamento de imagem no client-side para download rápido.",
+    result: "Ferramenta útil acessada por dezenas de usuários diariamente.",
+    description: "Gerador de QR Code simples e direto, focado na experiência do usuário.",
+    bullets: ["Geração instantânea", "Download em alta resolução", "Interface clean"],
+    stack: ["React", "TypeScript", "Tailwind CSS"],
+    image: "/projects/qrcode-br.webp",
+    gallery: [],
+    href: "https://qrcode.thomaseduardo.com.br/",
+    year: "2026",
+  },
+  {
+    tag: "Plataforma B2B",
+    title: "Braservice",
+    subtitle: "Sistema de Assistência e Serviços",
+    context: "Portal corporativo para a Braservice, facilitando o acesso a serviços e chamados.",
+    problem: "Fluxo de atendimento manual e dependente de planilhas e e-mails.",
+    architecture: "Sistema web responsivo integrado a banco de dados em tempo real.",
+    solution: "Portal unificado onde os clientes podem solicitar serviços e acompanhar status.",
+    challenges: "Migrar dados legados sem interromper a operação da empresa.",
+    result: "Redução de 40% no tempo de resposta a novos chamados.",
+    description: "Plataforma de gestão de serviços para a Braservice.",
+    bullets: ["Gestão de chamados", "Painel B2B", "Acompanhamento em tempo real"],
+    stack: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    image: "/projects/brasservise.webp",
+    gallery: [],
+    href: "https://braservice.thomaseduardo.com.br/",
+    year: "2026",
+  },
+  {
+
     tag: "Website Institucional",
     title: "Homma Design",
     subtitle: "Presença digital para mobiliário autoral",
@@ -58,7 +114,8 @@ export const PROJECTS: Project[] = [
       "Deploy automatizado (GitHub Actions → FTP)",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    image: "/projects/homma-projetos.webp",
+    image: "/projects/homma-1.webp",
+    gallery: ["/projects/homma-2.webp"],
     href: "https://hommadesign.com.br/",
     year: "2026",
   },
@@ -148,8 +205,9 @@ export const PROJECTS: Project[] = [
       "Exportação PDF e pagamentos (Pix/Stripe)",
     ],
     stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-    image: "/projects/paper-contratos.webp",
-    href: "https://minuta-facil-frontend.vercel.app/",
+    image: "/projects/minuta-1.png",
+    gallery: ["/projects/minuta-2.png", "/projects/minuta-3.png", "/projects/minuta-4.png"],
+    href: "https://minuta.thomaseduardo.com.br/",
     year: "2025",
   },
 
@@ -487,7 +545,7 @@ export const STACK = [
 ]
 
 export const CLIENTS = [
-  { name: "Brasservice", logo: "/clientes/brasservice.webp", href: "https://ass.bras-service.com/" },
+  { name: "Brasservice", logo: "/clientes/brasservice.webp", href: "https://braservice.thomaseduardo.com.br/" },
   { name: "Casalellit", logo: "/clientes/casalellit.webp", href: "https://www.lellit.com.br/" },
   { name: "Contabilidade Almeida", logo: "/clientes/contabilidade-almeida.webp" },
   { name: "Fitflow", logo: "/clientes/fitflow.webp" },

@@ -126,7 +126,7 @@ export function Hero() {
 
       {/* 3D video frame */}
       <motion.div
-        className="absolute inset-3 z-0 overflow-hidden rounded-[1.25rem] border border-white/10 sm:inset-4 sm:rounded-[1.75rem] md:inset-6"
+        className="absolute inset-0 z-0 overflow-hidden"
         style={
           reduceMotion
             ? undefined
@@ -163,10 +163,6 @@ export function Hero() {
           />
         )}
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08),inset_0_-40px_80px_rgba(0,0,0,0.45)]"
-        />
       </motion.div>
 
       <div className="site-shell relative z-10 w-full pb-[max(4.5rem,env(safe-area-inset-bottom)+3.25rem)] pt-24">
