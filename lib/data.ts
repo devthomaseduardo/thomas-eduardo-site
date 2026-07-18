@@ -176,7 +176,7 @@ export const PROJECTS: Project[] = [
       "Mesma API e design system do OS",
     ],
     stack: ["React", "TypeScript", "Node.js", "Vite", "Tailwind CSS"],
-    image: "/projects/teron-workspace.webp",
+    image: "/projects/  ",
     year: "2026",
   },
 
