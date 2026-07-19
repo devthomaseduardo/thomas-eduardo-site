@@ -37,7 +37,7 @@ const OliverParallax = dynamic(
 export const metadata: Metadata = {
   title: "Thomas Eduardo | Engenheiro de Produto | Sistemas que Geram Resultado",
   description:
-    "Thomas Eduardo — Engenheiro de Produto e Software Full Stack em São Paulo. Transformo desafios de produto e engenharia em sistemas que geram valor real para o seu negócio, com previsibilidade e confiança. Next.js, TypeScript, React e soluções digitais modernas e escaláveis.",
+    "Thomas Eduardo - Software Engineer Full Stack em São Paulo. Chega de perder vendas por sites lentos e sistemas travados. Transformo gargalos da sua operação em soluções digitais que convertem e escalam o seu negócio. Next.js, TypeScript e performance premium.",
   alternates: { canonical: "/" },
 }
 

@@ -123,7 +123,7 @@ export default function ProjetosPage() {
       <PageHero
         kicker="Portfólio · Casos Reais"
         lines={["Projetos selecionados."]}
-        description="Sistemas e produtos entregues com foco em resultado de negócio — da arquitetura ao deploy, com previsibilidade e qualidade."
+        description="Soluções testadas no mercado. Veja como transformei gargalos de empresas reais em faturamento rápido, velocidade e conversão."
       />
 
       <div className="mb-8 sm:mb-10 relative overflow-hidden bg-[#121212] border-y border-white/5 py-4">

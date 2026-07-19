@@ -97,7 +97,7 @@ export function ProjectCard({
                 <p className="label-kicker mb-1 text-white/45">
                   {String(index + 1).padStart(2, "0")} · {project.tag}
                 </p>
-                <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">
+                <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl lg:text-3xl">
                   {project.title}
                 </h3>
               </div>
@@ -111,11 +111,22 @@ export function ProjectCard({
               </motion.div>
             </div>
 
-            <p className="text-sm leading-relaxed text-white/75 sm:text-[15px]">
-              {project.description}
+            <p className="text-sm leading-relaxed text-white/75 sm:text-[15px] lg:text-base">
+              {project.context || project.description}
             </p>
 
-            <div className="mt-5">
+            <div className="mt-5 hidden sm:grid sm:grid-cols-2 gap-4 lg:gap-6 lg:mt-6">
+              <div>
+                <p className="label-kicker mb-1.5 text-white/45">O Desafio</p>
+                <p className="text-sm leading-relaxed text-white/60 lg:text-[15px]">{project.problem}</p>
+              </div>
+              <div>
+                <p className="label-kicker mb-1.5 text-white/45">O Resultado</p>
+                <p className="text-sm leading-relaxed text-white/80 lg:text-[15px]">{project.result}</p>
+              </div>
+            </div>
+
+            <div className="mt-5 sm:hidden">
               <p className="label-kicker mb-1.5 text-white/45">Resultado</p>
               <p className="text-sm leading-relaxed text-white/80">{project.result}</p>
             </div>

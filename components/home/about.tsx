@@ -19,7 +19,7 @@ const PILLARS = [
   {
     number: "03",
     title: "Confiança",
-    text: "Entrega previsível, observação em produção e deploys seguros — sem surpresas.",
+    text: "Sem dores de cabeça com atrasos. Projetos escaláveis, focados em gerar receita desde o primeiro dia de lançamento.",
   },
 ]
 
@@ -86,7 +86,7 @@ export function About() {
               className="max-w-[45ch] space-y-6 text-[15px] leading-relaxed text-muted-foreground/80 sm:text-base md:text-[17px]"
             >
               <p>
-                Engenheiro de software na intersecção entre backend robusto e interfaces que funcionam de verdade. Não vendo código — vendo sistemas que geram valor e resolvem problemas reais de negócio.
+                Um negócio estagnado digitalmente perde muito dinheiro. Minha missão é acabar com sistemas ineficientes e páginas lentas. Não vendo apenas código, entrego verdadeiras máquinas de conversão para colocar o seu faturamento em outro patamar.
               </p>
               <p>
                 Abordagem pragmática e consultiva: entendo o problema antes de qualquer linha de código, projeto com clareza e entrego com previsibilidade. Porque uma arquitetura sólida não é custo, é investimento.

@@ -9,7 +9,7 @@ const REVIEWS = [
     id: 1,
     author: "Equipe Braservice",
     title: "Landing Page · Captação de Clientes",
-    body: "O Thomas entregou uma landing page perfeita que substituiu nosso site antigo. O fluxo de contato direto para o WhatsApp foi imediato — percebemos a diferença nas conversões de campanhas logo na primeira semana.",
+    body: "O Thomas entregou uma landing page perfeita que substituiu nosso site antigo. O fluxo de contato direto para o WhatsApp foi imediato e percebemos a diferença nas conversões de campanhas logo na primeira semana.",
   },
   {
     id: 2,
@@ -119,7 +119,7 @@ export function Testimonials() {
         </motion.h2>
       </div>
 
-      {/* Infinite marquee — row 1: esquerda */}
+      {/* Infinite marquee: esquerda */}
       <div className="flex overflow-hidden">
         <motion.div
           className="flex shrink-0 items-stretch gap-4 group-hover:[animation-play-state:paused] sm:gap-5"
@@ -133,7 +133,7 @@ export function Testimonials() {
         </motion.div>
       </div>
 
-      {/* Infinite marquee — row 2: direita */}
+      {/* Infinite marquee: direita */}
       <div className="mt-4 flex overflow-hidden sm:mt-5">
         <motion.div
           className="flex shrink-0 items-stretch gap-4 group-hover:[animation-play-state:paused] sm:gap-5"

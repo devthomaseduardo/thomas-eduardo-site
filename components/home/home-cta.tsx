@@ -50,7 +50,7 @@ export function HomeCta() {
           viewport={{ once: true }}
           className="mx-auto mt-4 max-w-md text-sm font-light text-white/50 sm:mt-5 sm:text-base"
         >
-          Engenharia de ponta para transformar sua ideia em produto — com clareza de escopo, entrega previsível e resultados reais.
+          Chega de perder leads para a concorrência por lentidão e design amador. Tenha uma presença digital premium, focada em fechar negócios.
         </motion.p>
 
         <motion.div

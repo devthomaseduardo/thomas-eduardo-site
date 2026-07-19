@@ -187,7 +187,7 @@ export function Hero() {
           transition={{ delay: 0.65, duration: 0.6 }}
           className="mt-5 max-w-sm text-sm leading-relaxed text-white/55"
         >
-          Aplicações web, sistemas internos e produtos digitais - da arquitetura ao deploy.
+          Seu site está custando vendas? Desenvolvo landing pages e sistemas de alta performance focados em conversão, velocidade e lucros reais para o seu negócio.
         </motion.p>
       </div>
 

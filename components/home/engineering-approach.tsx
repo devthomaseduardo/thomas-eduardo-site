@@ -45,7 +45,7 @@ export function EngineeringApproach() {
             viewport={{ once: true }}
             className="copy-desktop mt-3 text-base font-light leading-relaxed text-muted-foreground sm:text-lg"
           >
-            Sem caixa preta. Entender o problema, projetar com clareza e entregar com confiabilidade — em cada etapa do projeto.
+            O mercado não perdoa amadorismo. Seu negócio precisa de tecnologia rápida, clara e que gere resultados imediatos. Sem enrolação técnica, foco no lucro.
           </motion.p>
         </div>
 

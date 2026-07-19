@@ -38,9 +38,9 @@ export function ProjectsStack({
     <section ref={containerRef} id="projects" className="relative h-[450vh] w-full sm:h-[300vh]">
       <div className="sticky top-0 flex h-[100dvh] flex-col justify-center overflow-hidden bg-background">
         {!hideHeader && (
-          <div className="site-shell pointer-events-none absolute left-0 right-0 top-24 z-10 sm:top-32">
+          <div className="site-shell pointer-events-none absolute left-0 right-0 top-6 z-10 sm:top-12 md:top-20">
             <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
+               <div>
                 <motion.p
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export function ProjectsStack({
           </div>
         )}
 
-        <div className="mt-16 flex w-full items-center pl-[max(env(safe-area-inset-left),1vw)] sm:mt-0 sm:pl-[max(env(safe-area-inset-left),4vw)]">
+        <div className="mt-28 flex w-full items-center pl-[max(env(safe-area-inset-left),1vw)] sm:mt-10 md:mt-0 sm:pl-[max(env(safe-area-inset-left),4vw)]">
           <motion.div style={{ x }} className="flex items-center gap-6 pr-6 sm:gap-8 sm:pr-12">
             {projects.map((project, i) => (
               <div
