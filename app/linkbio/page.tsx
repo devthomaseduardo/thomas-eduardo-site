@@ -23,6 +23,13 @@ const LINKS = [
   },
 
   {
+    name: "Área do Cliente",
+    desc: "Acesso restrito ao portal",
+    url: "/login", // Ajuste a URL conforme necessário
+    icon: Briefcase,
+    primary: false,
+  },
+  {
     name: "Como Trabalho",
     desc: "Processo e entregáveis",
     url: "/processo",
