@@ -72,7 +72,7 @@ function ReviewCard({
             size={32}
             name={review.author}
             variant="beam"
-            colors={["#1d1d1d", "#ffffff", "#b48dff", "#fc805a", "#a6ff4c"]}
+            colors={["#000000", "#ffffff", "#b48dff", "#fc805a", "#a6ff4c"]}
           />
         </div>
         <div className="min-w-0">

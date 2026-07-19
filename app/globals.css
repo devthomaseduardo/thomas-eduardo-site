@@ -39,29 +39,29 @@
 :root {
   color-scheme: dark;
 
-  --background: #1d1d1d;
+  --background: #000000;
   --foreground: #FFFFFF;
 
-  --card: #1d1d1d;
+  --card: #000000;
   --card-foreground: #FFFFFF;
 
-  --popover: #1d1d1d;
+  --popover: #000000;
   --popover-foreground: #FFFFFF;
 
   --primary: #FFFFFF;
-  --primary-foreground: #1d1d1d;
+  --primary-foreground: #000000;
 
-  --secondary: #1d1d1d;
+  --secondary: #000000;
   --secondary-foreground: #FFFFFF;
 
-  --muted: #1d1d1d;
+  --muted: #000000;
   --muted-foreground: #C2C2C2;
 
-  --accent: #232323;
+  --accent: #111111;
   --accent-foreground: #FFFFFF;
 
-  --border: #1d1d1d;
-  --input: #1d1d1d;
+  --border: #111111;
+  --input: #000000;
   --ring: #FFFFFF;
 
   --success: #22C55E;
@@ -92,7 +92,7 @@
     position: fixed;
     inset: 0;
     z-index: 99;
-    background: #1d1d1d;
+    background: #000000;
     pointer-events: none;
   }
 
@@ -105,7 +105,7 @@
 
   ::selection {
     background: #FFFFFF;
-    color: #1d1d1d;
+    color: #000000;
   }
 
   /* Custom cursor - hide native on fine pointers when active */
@@ -235,7 +235,7 @@
 
   .btn-solid-pill {
     background: #fff;
-    color: #1d1d1d;
+    color: #000000;
   }
 
   .btn-solid-pill:hover {
@@ -335,8 +335,8 @@
   }
 
   .bg-grid-fade {
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #1d1d1d 40%, transparent 100%);
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #1d1d1d 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000000 40%, transparent 100%);
   }
 
   .text-balance {
