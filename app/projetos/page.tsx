@@ -9,6 +9,7 @@ import { PageHero } from "@/components/page-hero"
 import { TechIconRow } from "@/components/tech-icon"
 import { CtaLink } from "@/components/ui/cta"
 import { ExternalLink } from "lucide-react"
+import { Shape7 } from "@/components/ui/abstract-shapes"
 
 function ProjectItem({
   project,
@@ -125,10 +126,19 @@ export default function ProjetosPage() {
         description="Sistemas e produtos entregues com foco em resultado de negócio — da arquitetura ao deploy, com previsibilidade e qualidade."
       />
 
-      <div className="mb-8 sm:mb-10">
+      <div className="mb-8 sm:mb-10 relative overflow-hidden bg-[#121212] border-y border-white/5 py-4">
+        <motion.div
+          className="pointer-events-none absolute right-10 top-0 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape7 />
+        </motion.div>
         <ClientsCarousel
           title="Clientes e projetos reais"
-          titleClassName="label-kicker text-muted-foreground/50"
+          titleClassName="label-kicker text-white/50"
+          className="relative overflow-hidden py-6 sm:py-9"
+          fadeClassName="from-[#121212]"
         />
       </div>
 

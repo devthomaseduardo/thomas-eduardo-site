@@ -1,9 +1,18 @@
 import { PROCESS } from "@/lib/data"
 import { Reveal } from "@/components/reveal"
+import { Shape7 } from "@/components/ui/abstract-shapes"
+import { motion } from "framer-motion"
 
 export function Process() {
   return (
-    <section className="relative site-shell py-20 sm:py-36">
+    <section className="relative site-shell py-20 sm:py-36 overflow-hidden">
+      <motion.div
+        className="pointer-events-none absolute left-0 top-10 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape7 />
+      </motion.div>
 
       <Reveal>
         <div className="mb-16 sm:mb-20">

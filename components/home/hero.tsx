@@ -10,6 +10,7 @@ import {
   useReducedMotion,
 } from "framer-motion"
 import TextPressure from "@/components/ui/text-pressure"
+import { AnimeGridBackground } from "@/components/ui/anime-grid-background"
 
 /**
  * Hero - video scrub + 3D tilt + floating light + entrance motion
@@ -105,7 +106,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-black [perspective:1400px]"
+      className="relative flex h-[100svh] min-h-[32rem] w-full items-end overflow-hidden bg-background [perspective:1400px]"
       data-hero-container
     >
       {/* Ambient orb that follows pointer */}
@@ -141,19 +142,11 @@ export function Hero() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
       >
-        <video
-          ref={videoRef}
-          src="/hero.mp4"
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
-          aria-hidden
-        />
+        {/* Video removido em favor do AnimeGridBackground */}
+        <AnimeGridBackground />
 
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background via-background/35 to-transparent" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-background/40 via-transparent to-transparent" />
 
         {!reduceMotion && (
           <motion.div
@@ -172,7 +165,7 @@ export function Hero() {
           transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-3 text-[11px] font-light uppercase tracking-widest text-white/70"
         >
-          Product Engineer · SP
+          Software Engineer · SP
         </motion.p>
 
         <h1 className="sr-only">Thomas Eduardo - Full Stack Software Engineer</h1>

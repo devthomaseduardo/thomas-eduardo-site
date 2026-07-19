@@ -3,6 +3,7 @@
 import { ENGINEERING_APPROACH } from "@/lib/data"
 import { Search, Network, Code, TestTube, Rocket, IterationCcw } from "lucide-react"
 import { motion } from "framer-motion"
+import { Shape6 } from "@/components/ui/abstract-shapes"
 
 const ICONS = [Search, Network, Code, TestTube, Rocket, IterationCcw]
 
@@ -12,7 +13,15 @@ export function EngineeringApproach() {
       id="engineering"
       className="relative overflow-hidden bg-background py-10 sm:py-16 md:py-20"
     >
-      <div className="site-shell">
+      <motion.div
+        className="pointer-events-none absolute right-10 top-1/4 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape6 />
+      </motion.div>
+
+      <div className="site-shell relative z-10">
         <div className="mb-5 max-w-2xl sm:mb-10">
           <motion.p
             initial={{ opacity: 0, y: 8 }}

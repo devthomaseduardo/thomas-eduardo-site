@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { CONTACT } from "@/lib/data"
 import { CtaLink } from "@/components/ui/cta"
+import { Shape2 } from "@/components/ui/abstract-shapes"
 
 const PILLARS = [
   {
@@ -28,7 +29,15 @@ export function About() {
       id="about"
       className="relative overflow-hidden border-t border-border/10 bg-background py-16 sm:py-24 md:py-32"
     >
-      <div className="site-shell">
+      <motion.div
+        className="pointer-events-none absolute left-10 top-32 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 360, y: [0, -30, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape2 />
+      </motion.div>
+
+      <div className="site-shell relative z-10">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
           
           {/* Left Column - Sticky Heading */}

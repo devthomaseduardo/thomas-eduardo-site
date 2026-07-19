@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { AlertCircle, Clock, TrendingDown, ShieldAlert } from "lucide-react"
+import { Shape3 } from "@/components/ui/abstract-shapes"
 
 const PAIN_POINTS = [
   {
@@ -41,6 +42,14 @@ export function PainPoints() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]"
       />
+
+      <motion.div
+        className="pointer-events-none absolute right-10 bottom-20 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: -360, scale: [1, 1.05, 1] }}
+        transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape3 />
+      </motion.div>
 
       <div className="site-shell relative z-10">
         {/* Section header */}

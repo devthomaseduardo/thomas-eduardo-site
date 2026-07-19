@@ -2,43 +2,44 @@
 
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
+import Avatar from "boring-avatars"
 
 const REVIEWS = [
   {
     id: 1,
     author: "Equipe Braservice",
-    title: "Portal B2B · Gestão de Chamados",
-    body: "O Thomas entregou um portal completo que substituiu 100% das nossas planilhas e e-mails. A redução no tempo de resposta a novos chamados foi imediata — percebemos a diferença na primeira semana.",
+    title: "Landing Page · Captação de Clientes",
+    body: "O Thomas entregou uma landing page perfeita que substituiu nosso site antigo. O fluxo de contato direto para o WhatsApp foi imediato — percebemos a diferença nas conversões de campanhas logo na primeira semana.",
   },
   {
     id: 2,
     author: "Equipe Homma Design",
-    title: "Website Institucional · Mobiliário Autoral",
-    body: "Queríamos uma presença digital à altura da nossa curadoria física. O resultado superou as expectativas: site premium, rápido e que comunica exatamente a essência da marca.",
+    title: "Landing Page Institucional",
+    body: "Queríamos uma presença digital voltada para conversão à altura da nossa curadoria física. O resultado superou as expectativas: uma landing page premium, ultra rápida e focada em vendas.",
   },
   {
     id: 3,
     author: "Equipe Sleep House",
-    title: "Showroom Digital · Multi-unidade",
-    body: "Ter um showroom digital por filial, com rastreamento de leads e integração direta ao WhatsApp, transformou completamente nossa estratégia de campanhas. Entrega limpa, sem surpresas.",
+    title: "Landing Page · Alta Conversão",
+    body: "Ter uma landing page otimizada com rastreamento de leads e integração direta ao WhatsApp transformou nossa estratégia de tráfego. Entrega limpa, sem surpresas e focada no cliente final.",
   },
   {
     id: 4,
     author: "Equipe Yázigi Swiss Park",
-    title: "Landing Page + Admin · Campinas",
-    body: "O diagnóstico interativo de inglês virou nosso principal canal de captação. O painel interno para gerenciar leads foi um diferencial enorme para o time comercial.",
+    title: "Landing Page · Captação de Alunos",
+    body: "O diagnóstico interativo de inglês na landing page virou nosso principal canal de captação. A velocidade e a clareza da página ajudaram a melhorar nossas métricas de campanhas.",
   },
   {
     id: 5,
     author: "Equipe SpinMove",
-    title: "Landing Page de Alta Conversão",
-    body: "A landing page ficou com a identidade do estúdio e converte muito bem. Matrículas chegam direto pelo WhatsApp sem atrito. Exatamente o que precisávamos para as campanhas.",
+    title: "Landing Page · Matrículas",
+    body: "A landing page ficou com a identidade do estúdio e converte muito bem. Matrículas chegam direto pelo WhatsApp sem atrito. Exatamente o que precisávamos para nossos anúncios.",
   },
   {
     id: 6,
     author: "Equipe Hazap Workstation",
     title: "Landing Page · Workstations Premium",
-    body: "Conseguiram capturar exatamente o tom técnico que precisávamos para o público de arquitetura e engenharia. O fluxo comercial via WhatsApp ficou muito mais qualificado após o lançamento.",
+    body: "Conseguiram capturar exatamente o tom técnico que precisávamos. O fluxo comercial gerado pela nova landing page via WhatsApp ficou muito mais qualificado após o lançamento.",
   },
 ]
 
@@ -65,9 +66,14 @@ function ReviewCard({
 
       {/* Author */}
       <div className="mt-5 flex items-center gap-3 border-t border-white/5 pt-4">
-        {/* Avatar placeholder */}
-        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/5 font-mono text-[10px] text-white/40">
-          {review.author.charAt(0)}
+        {/* Avatar */}
+        <div className="flex size-8 shrink-0 items-center justify-center rounded-full overflow-hidden bg-white/5">
+          <Avatar 
+            size={32}
+            name={review.author}
+            variant="beam"
+            colors={["#1d1d1d", "#ffffff", "#b48dff", "#fc805a", "#a6ff4c"]}
+          />
         </div>
         <div className="min-w-0">
           <p className="truncate text-xs font-semibold text-white/80">

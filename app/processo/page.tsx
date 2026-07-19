@@ -9,6 +9,7 @@ import { PageAnimator } from "@/components/page-animator"
 import { Icon } from "@iconify/react"
 import { CtaLink } from "@/components/ui/cta"
 import { PageHero } from "@/components/page-hero"
+import { Shape5, Shape6, Shape8 } from "@/components/ui/abstract-shapes"
 
 const STEPS = [
   { step: "01", title: "Conversa", text: "Você explica a ideia e o objetivo.", image: "/images/process/process_conversa.png" },
@@ -178,6 +179,13 @@ export default function ProcessPage() {
 
       {/* Included */}
       <section className="py-16 sm:py-24 relative overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute right-10 top-10 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape5 />
+        </motion.div>
         <div className="absolute inset-0 bg-grid-fade opacity-30 pointer-events-none" />
         <div className="site-shell relative z-10">
           <div className="mb-10 text-center sm:mb-16">
@@ -309,8 +317,15 @@ export default function ProcessPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 sm:py-32">
-        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
+      <section className="py-20 sm:py-32 relative overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute left-10 top-1/4 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: -180, scale: [1, 1.05, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape6 />
+        </motion.div>
+        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 relative z-10">
           <div className="mb-12 sm:mb-16 text-center">
             <p className="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4">Dúvidas?</p>
             <h2 className="font-sans text-3xl sm:text-4xl font-semibold tracking-tight text-white">Perguntas frequentes.</h2>

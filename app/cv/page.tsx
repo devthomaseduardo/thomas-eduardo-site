@@ -4,6 +4,8 @@ import { PageAnimator } from "@/components/page-animator"
 import { PageHero } from "@/components/page-hero"
 import { CtaLink } from "@/components/ui/cta"
 import { Download, ExternalLink } from "lucide-react"
+import { Shape3 } from "@/components/ui/abstract-shapes"
+import { motion } from "framer-motion"
 
 export default function CVPage() {
   const cvPath = "/thomas_eduardo_curriculo_fullstack.pdf"
@@ -11,7 +13,13 @@ export default function CVPage() {
   return (
     <main className="min-h-screen bg-background pb-20">
       <PageAnimator />
-      
+      <motion.div
+        className="pointer-events-none absolute right-10 top-1/4 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape3 />
+      </motion.div>
       <PageHero
         kicker="Currículo"
         lines={["Minha trajetória", "profissional."]}

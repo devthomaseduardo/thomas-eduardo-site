@@ -2,11 +2,21 @@ import { Check } from "lucide-react"
 import { SERVICES } from "@/lib/data"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
+import { Shape8 } from "@/components/ui/abstract-shapes"
+import { motion } from "framer-motion"
 
 export function Services() {
   return (
-    <section id="servicos" className="bg-card/20">
-      <div className="site-shell py-16 sm:py-32">
+    <section id="servicos" className="bg-card/20 relative overflow-hidden">
+      <motion.div
+        className="pointer-events-none absolute right-10 top-1/2 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: -180, scale: [1, 1.05, 1] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape8 />
+      </motion.div>
+
+      <div className="site-shell py-16 sm:py-32 relative z-10">
         <SectionHeading
           kicker="Soluções"
           title="Soluções que eu construo"

@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { CONTACT } from "@/lib/data"
 import { CtaLink } from "@/components/ui/cta"
 import DepthParallaxWords from "@/components/ui/smoothui/depth-parallax-words"
+import { Shape9 } from "@/components/ui/abstract-shapes"
 
 export function HomeCta() {
   return (
@@ -12,6 +13,14 @@ export function HomeCta() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_100%,rgba(255,255,255,0.06),transparent_60%)]"
       />
+
+      <motion.div
+        className="pointer-events-none absolute left-10 top-1/4 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape9 />
+      </motion.div>
 
       <div className="site-shell relative z-10 text-center">
         <motion.p

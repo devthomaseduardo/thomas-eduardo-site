@@ -12,6 +12,7 @@ import FadeThrough from "@/components/ui/smoothui/fade-through"
 import DepthParallaxWords from "@/components/ui/smoothui/depth-parallax-words"
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
+import { Shape1, Shape2, Shape4 } from "@/components/ui/abstract-shapes"
 
 const METRICS = [
   { value: "3+", label: "Anos", detail: "Produto e sistemas" },
@@ -87,7 +88,7 @@ export default function SobrePage() {
         lines={["Thomas", "Eduardo."]}
         description={
           <>
-            Product Engineer · Full Stack. Produtos digitais do zero à{" "}
+            Software Engineer · Full Stack. Produtos digitais do zero à{" "}
             <FadeThrough phrases={["produção.", "escala.", "receita."]} className="font-medium text-white" />
           </>
         }
@@ -168,8 +169,15 @@ export default function SobrePage() {
       </div>
 
       {/* Metrics - only on About */}
-      <section id="metricas" className="border-y border-border/25">
-        <div className="site-shell">
+      <section id="metricas" className="border-y border-border/25 relative overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute left-10 top-1/2 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen -translate-y-1/2"
+          animate={{ rotate: -180, scale: [1, 1.05, 1] }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape1 />
+        </motion.div>
+        <div className="site-shell relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {METRICS.map((m, i) => (
               <motion.div
@@ -196,8 +204,15 @@ export default function SobrePage() {
       </section>
 
       {/* Pillars - modern strip */}
-      <section className="py-10 sm:py-14">
-        <div className="site-shell">
+      <section className="py-10 sm:py-14 relative overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute right-10 top-1/3 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape2 />
+        </motion.div>
+        <div className="site-shell relative z-10">
           <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
             <div>
               <p className="label-kicker mb-2">Abordagem</p>
@@ -305,8 +320,15 @@ export default function SobrePage() {
       </section>
 
       {/* Stack */}
-      <section className="border-t border-border/20 bg-white/[0.015] py-10 sm:py-14">
-        <div className="site-shell">
+      <section className="border-t border-border/20 bg-white/[0.015] py-10 sm:py-14 relative overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute left-10 top-1/4 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: -360, y: [0, 20, 0] }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape4 />
+        </motion.div>
+        <div className="site-shell relative z-10">
           <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="label-kicker mb-2">Stack</p>

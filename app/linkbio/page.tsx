@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { CONTACT, PROJECTS } from "@/lib/data"
 import { ArrowRight, Globe, Briefcase, ChevronRight } from "lucide-react"
 import { Icon } from "@iconify/react"
+import { Shape7, Shape8 } from "@/components/ui/abstract-shapes"
 
 const Github = (props: any) => <Icon icon="mdi:github" {...props} />
 const Linkedin = (props: any) => <Icon icon="mdi:linkedin" {...props} />
@@ -63,9 +64,23 @@ export default function LinkBioPage() {
       `}} />
 
       {/* Ambient Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.03] blur-[120px] rounded-full" />
         <div className="absolute inset-0 bg-grid-fade opacity-20" />
+        <motion.div
+          className="absolute -top-10 left-10 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape7 />
+        </motion.div>
+        <motion.div
+          className="absolute top-10 right-10 w-32 opacity-20 sm:w-40 mix-blend-screen"
+          animate={{ rotate: -180, scale: [1, 1.05, 1] }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        >
+          <Shape8 />
+        </motion.div>
       </div>
 
       {/* Content Container */}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Icon } from "@iconify/react"
+import { Shape4 } from "@/components/ui/abstract-shapes"
 
 const EXPERTISE = [
   {
@@ -56,7 +57,15 @@ export function TechExpertise() {
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
 
-      <div className="site-shell">
+      <motion.div
+        className="pointer-events-none absolute left-10 top-1/3 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 180, scale: [1, 1.1, 1] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape4 />
+      </motion.div>
+
+      <div className="site-shell relative z-10">
         <div className="mb-5 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <div>
             <motion.p

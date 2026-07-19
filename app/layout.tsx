@@ -12,6 +12,7 @@ import { FloatingWhatsApp } from "@/components/floating-whatsapp"
 import { CustomCursor } from "@/components/ui/custom-cursor"
 import { PageLoader } from "@/components/ui/page-loader"
 import { PageTransition } from "@/components/page-transition"
+import { Toaster } from "sileo"
 import "./globals.css"
 
 // nik.co vibe: Suisse Int'l → Inter (body), Heathergreen → Syne (display)
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     "Next.js Developer",
     "TypeScript Engineer",
     "React Developer São Paulo",
-    "Product Engineer",
+    "Software Engineer",
     "Desenvolvedor Web São Paulo",
     "Criação de Sites Profissionais",
     "Portfólio Desenvolvedor Full Stack",
@@ -217,6 +218,7 @@ posthog.init('phc_wNUQSvKvfSVPCDCh7DTHk7hzkSc7A4agRv6LLAWWr2qn',{api_host:'https
         <SmoothScroll>
           <PageLoader />
           <CustomCursor />
+          <Toaster position="top-right" />
           <SiteNav />
           <PageTransition>
             <main>{children}</main>

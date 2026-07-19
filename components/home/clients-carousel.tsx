@@ -9,14 +9,18 @@ const ALL_CLIENTS = [...CLIENTS, ...CLIENTS]
 export function ClientsCarousel({
   title = "Marcas & parceiros",
   titleClassName = "label-kicker text-muted-foreground/50",
+  className = "relative overflow-hidden border-y border-border/40 py-6 sm:py-9",
+  fadeClassName = "from-background",
 }: {
   title?: string
   titleClassName?: string
+  className?: string
+  fadeClassName?: string
 }) {
   return (
-    <section className="relative overflow-hidden border-y border-border/40 py-6 sm:py-9">
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-background to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-background to-transparent sm:w-24" />
+    <section className={className}>
+      <div className={`pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r ${fadeClassName} to-transparent sm:w-24`} />
+      <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l ${fadeClassName} to-transparent sm:w-24`} />
 
       <div className="mb-3 text-center sm:mb-5">
         <p className={titleClassName}>{title}</p>

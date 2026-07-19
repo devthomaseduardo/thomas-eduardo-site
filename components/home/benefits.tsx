@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Target, TrendingUp, Layers, ShieldCheck } from "lucide-react"
 import { CONTACT } from "@/lib/data"
 import { CtaLink } from "@/components/ui/cta"
+import { Shape1 } from "@/components/ui/abstract-shapes"
 
 const BENEFITS = [
   {
@@ -47,6 +48,15 @@ export function Benefits() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_35%_at_50%_100%,rgba(255,255,255,0.04),transparent_70%)]"
       />
+
+      {/* Abstract shape decoration */}
+      <motion.div
+        className="pointer-events-none absolute -left-10 top-20 z-0 w-32 opacity-20 sm:w-40 mix-blend-screen"
+        animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      >
+        <Shape1 />
+      </motion.div>
 
       <div className="site-shell relative z-10">
         {/* Section header */}
