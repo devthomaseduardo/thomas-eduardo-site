@@ -20,16 +20,7 @@ const STEPS = [
   { step: "06", title: "Entrega", text: "Deploy, validação e suporte inicial.", image: "/images/process/process_entrega.png" },
 ]
 
-const INCLUDED = [
-  { label: "Planejamento", icon: "ph:strategy-bold" },
-  { label: "Desenvolvimento", icon: "ph:code-bold" },
-  { label: "Responsividade", icon: "ph:devices-bold" },
-  { label: "SEO técnico", icon: "ph:magnifying-glass-bold" },
-  { label: "Integrações", icon: "ph:plugs-connected-bold" },
-  { label: "Deploy", icon: "ph:rocket-launch-bold" },
-  { label: "Documentação", icon: "ph:file-text-bold" },
-  { label: "Suporte inicial", icon: "ph:headset-bold" },
-]
+
 
 const DELIVERABLES = [
   { id: "01", title: "Proposta Comercial", text: "Documento detalhado com o escopo técnico, valores e visão do projeto." },
@@ -39,27 +30,63 @@ const DELIVERABLES = [
   { id: "05", title: "Deploy e Suporte", text: "Publicação do projeto no ar e acompanhamento nos primeiros dias." },
 ]
 
+const PROBLEM_CARDS = [
+  { title: "Sua equipe depende de planilhas?", text: "Automatizamos processos para reduzir erros e tempo gasto.", icon: "ph:table-bold" },
+  { title: "Os sistemas atuais não atendem mais?", text: "Desenvolvemos soluções sob medida para sua operação.", icon: "ph:warning-circle-bold" },
+  { title: "Você perde clientes por demora?", text: "Criamos plataformas rápidas e preparadas para crescer.", icon: "ph:clock-countdown-bold" },
+  { title: "Tem uma ideia mas não sabe por onde começar?", text: "Transformamos sua ideia em um produto digital validado.", icon: "ph:lightbulb-bold" }
+]
+
+
+
+const INCLUDED = [
+  { label: "Desenvolvimento sob medida", icon: "ph:code-bold" },
+  { label: "Código limpo e escalável", icon: "ph:tree-structure-bold" },
+  { label: "Arquitetura moderna", icon: "ph:buildings-bold" },
+  { label: "APIs e integrações", icon: "ph:plugs-connected-bold" },
+  { label: "Performance", icon: "ph:lightning-bold" },
+  { label: "Segurança", icon: "ph:shield-check-bold" },
+  { label: "Documentação", icon: "ph:file-text-bold" },
+  { label: "Suporte após entrega", icon: "ph:headset-bold" },
+]
+
+const PROJECT_TYPES = [
+  { label: "Sistema de gestão", icon: "ph:kanban-bold" },
+  { label: "CRM", icon: "ph:users-three-bold" },
+  { label: "ERP", icon: "ph:factory-bold" },
+  { label: "Marketplace", icon: "ph:storefront-bold" },
+  { label: "Plataforma SaaS", icon: "ph:cloud-check-bold" },
+  { label: "Portal Corporativo", icon: "ph:briefcase-bold" },
+  { label: "Aplicativo", icon: "ph:device-mobile-bold" },
+  { label: "Dashboard", icon: "ph:chart-bar-bold" },
+  { label: "API", icon: "ph:plugs-bold" }
+]
+
 const FAQ = [
   {
-    q: "Como funciona o pagamento?",
-    a: "Geralmente em duas partes: sinal para iniciar e saldo na entrega. Tudo em contrato.",
+    q: "Quanto custa um sistema?",
+    a: "Não existe preço fixo. Cada projeto é analisado conforme funcionalidades, integrações, complexidade e prazo. Você recebe uma proposta detalhada após a análise.",
   },
   {
-    q: "Quando o projeto começa?",
-    a: "Após aprovação da proposta/cronograma e confirmação do sinal.",
+    q: "Quanto tempo leva?",
+    a: "Depende do escopo. Landing pages podem levar 2 semanas, sistemas complexos podem levar meses. O cronograma exato é definido antes do início.",
+  },
+  {
+    q: "O código é meu?",
+    a: "Sim. Todo o código fonte e propriedade intelectual do sistema são 100% transferidos para você após a quitação do projeto.",
   },
   {
     q: "Posso solicitar alterações?",
-    a: "Sim, com etapas de validação e respeito ao escopo aprovado.",
+    a: "Sim, o processo inclui etapas de validação. Mudanças fora do escopo inicial são analisadas e orçadas à parte com total transparência.",
   },
   {
-    q: "Como acompanho o desenvolvimento?",
-    a: "Canal direto, updates frequentes e previews para testar.",
+    q: "Como funciona o pagamento?",
+    a: "Normalmente dividido: um sinal para reserva de agenda/início e o saldo na entrega final, ou parcelado conforme marcos do cronograma.",
   },
   {
-    q: "Ainda não sei exatamente o que preciso?",
-    a: "A conversa inicial e a análise transformam a ideia em escopo sólido.",
-  },
+    q: "Existe suporte após entrega?",
+    a: "Sim. Todos os projetos incluem um período de suporte inicial para ajustes. Após isso, ofereço planos de manutenção opcionais.",
+  }
 ]
 
 const fadeUp = {
@@ -77,19 +104,44 @@ export default function ProcessPage() {
       <PageAnimator />
 
       <PageHero
-        kicker="Processo"
-        lines={["Como funciona", "um projeto."]}
-        description="Cada projeto é diferente, mas todos seguem um processo claro do início ao fim."
+        kicker=""
+        lines={["Seu software não", "precisa ser complicado."]}
+        description="Transformo processos manuais em sistemas rápidos, escaláveis e feitos para o seu negócio."
       />
 
-      <div className="site-shell -mt-2 mb-8 flex flex-col gap-2.5 min-[420px]:flex-row sm:mb-10">
-        <CtaLink href={CONTACT.whatsapp} variant="solid" size="sm" external>
-          Iniciar um projeto
+      <div className="site-shell -mt-2 mb-16 flex flex-col gap-2.5 min-[420px]:flex-row sm:mb-20 justify-center">
+        <CtaLink href={CONTACT.whatsapp} variant="solid" size="md" external>
+          Solicitar orçamento
         </CtaLink>
-        <CtaLink href="#processo" variant="soft" size="sm">
-          Ver etapas
+        <CtaLink href="/projetos" variant="soft" size="md">
+          Ver projetos
         </CtaLink>
       </div>
+
+
+
+      {/* Dores */}
+      <section className="py-16 sm:py-24 border-t border-white/5">
+        <div className="site-shell">
+          <div className="mb-12 text-center">
+            <h2 className="text-h2 text-white text-balance">Você está enfrentando algum destes problemas?</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+            {PROBLEM_CARDS.map((card) => (
+              <div key={card.title} className="group rounded-2xl border border-white/5 bg-[#0a0a0a] p-6 sm:p-8 hover:border-white/10 hover:bg-white/[0.02] transition-colors relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10">
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-xl border border-white/5 bg-white/5 text-white/60 transition-colors group-hover:border-white/10 group-hover:text-white shadow-inner">
+                    <Icon icon={card.icon} className="size-6" />
+                  </div>
+                  <h3 className="mb-3 text-lg sm:text-xl font-semibold text-white tracking-tight">{card.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-white/60 group-hover:text-white/80 transition-colors">{card.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Steps */}
       <section id="processo" className="border-t border-white/5 bg-gradient-to-b from-transparent to-white/[0.02] py-16 sm:py-24">
@@ -97,9 +149,10 @@ export default function ProcessPage() {
           <div className="mb-10 sm:mb-16 text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 mb-4">
               <span className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Etapas</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Processo</p>
             </div>
-            <h2 className="text-h2 text-white">Como trabalhamos.</h2>
+            <h2 className="text-h2 text-white">Um processo transparente do primeiro contato até a entrega.</h2>
+            <p className="mt-4 text-[15px] text-white/60">Você acompanha cada etapa do desenvolvimento e sabe exatamente o que está sendo construído.</p>
           </div>
 
           {/* Interactive Accordion (All screens) */}
@@ -198,12 +251,12 @@ export default function ProcessPage() {
                 key={item.label}
                 {...fadeUp}
                 transition={{ delay: i * 0.03 }}
-                className="card-animate flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center backdrop-blur-sm transition-colors hover:bg-white/[0.05]"
+                className="card-animate group flex flex-col items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-6 text-center backdrop-blur-sm transition-colors hover:border-white/10 hover:bg-white/[0.05]"
               >
-                <div className="flex size-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 shadow-inner">
+                <div className="flex size-12 items-center justify-center rounded-2xl border border-white/5 bg-white/5 text-white/60 shadow-inner transition-colors group-hover:border-white/10 group-hover:text-white">
                   <Icon icon={item.icon} className="size-6" />
                 </div>
-                <span className="font-mono text-xs uppercase tracking-widest text-white/90">
+                <span className="font-mono text-xs uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
                   {item.label}
                 </span>
               </motion.div>
@@ -220,15 +273,15 @@ export default function ProcessPage() {
               <div className="p-8 sm:p-12 lg:p-16 relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                 <div className="relative z-10">
-                  <p className="label-kicker mb-3">Garantia</p>
-                  <h2 className="text-h2 text-white">Transparência total.</h2>
+                  <p className="label-kicker mb-3">Transparência</p>
+                  <h2 className="text-h2 text-white text-balance">Sem surpresas durante o projeto.</h2>
                   <ul className="mt-8 space-y-4">
                     {[
-                      "Escopo definido antes do início.",
-                      "Valor fechado antes do desenvolvimento.",
-                      "Mudanças discutidas previamente.",
-                      "Sem surpresas financeiras.",
+                      "Cronograma definido.",
+                      "Escopo documentado.",
+                      "Aprovação em cada etapa.",
                       "Comunicação constante.",
+                      "Código entregue ao cliente.",
                     ].map((t) => (
                       <li key={t} className="flex items-start gap-4 text-[15px] font-light text-white/80">
                         <span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5">
@@ -244,20 +297,21 @@ export default function ProcessPage() {
               <div className="p-8 sm:p-12 lg:p-16 bg-white/[0.02] relative">
                 <div className="relative z-10">
                   <p className="label-kicker mb-3">Investimento</p>
-                  <h2 className="text-h2 text-white">Como é calculado.</h2>
+                  <h2 className="text-h2 text-white text-balance">Quanto custa desenvolver um software?</h2>
                   <p className="mt-6 text-[15px] leading-relaxed font-light text-white/70 text-pretty">
-                    Cada projeto é estimado conforme complexidade, prazo e integrações. Depois da análise, você recebe uma proposta personalizada e definitiva - sem custos extras surpresas.
+                    Não existe preço fixo. Cada projeto é analisado conforme:
                   </p>
-                  <div className="mt-8 flex flex-wrap gap-2.5">
-                    {["Complexidade", "Prazo", "Integrações", "Escopo"].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/20 bg-black/50 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-white/80"
-                      >
-                        {item}
-                      </span>
+                  <ul className="mt-4 space-y-2 mb-6">
+                    {["Funcionalidades", "Integrações", "Complexidade", "Prazo", "Infraestrutura"].map((t) => (
+                      <li key={t} className="flex items-center gap-2 text-sm text-white/60">
+                        <span className="size-1.5 rounded-full bg-white/20" /> {t}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
+                  
+                  <CtaLink href={CONTACT.whatsapp} variant="ghost" size="sm" external>
+                    Solicite uma análise gratuita
+                  </CtaLink>
                 </div>
               </div>
             </div>
@@ -270,47 +324,22 @@ export default function ProcessPage() {
         <div className="site-shell">
           <div className="mb-16 sm:mb-24 max-w-2xl">
             <p className="label-kicker mb-3">O que fazemos</p>
-            <h2 className="text-h2 text-white">Tipos de projetos.</h2>
+            <h2 className="text-h2 text-white">O que podemos desenvolver.</h2>
           </div>
           
-          <div className="flex flex-col border-t border-white/10">
-            {SERVICES.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.5 }}
-                className="group flex flex-col md:flex-row md:items-start border-b border-white/10 py-8 sm:py-10 transition-colors hover:bg-white/[0.02]"
-              >
-                {/* Number */}
-                <div className="mb-4 md:mb-0 md:w-1/6">
-                  <span className="font-mono text-xs font-medium text-white/40">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <div className="mb-4 md:mb-0 md:w-2/6">
-                  <h3 className="font-display text-xl font-medium tracking-tight text-white/90 group-hover:text-white transition-colors max-w-[200px]">
-                    {item.title}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PROJECT_TYPES.map((item) => (
+              <div key={item.label} className="group flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.05] transition-colors relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10 flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-white/5 text-white/50 transition-colors group-hover:bg-white/10 group-hover:text-white">
+                    <Icon icon={item.icon} className="size-5" />
+                  </div>
+                  <h3 className="font-display text-lg font-medium tracking-tight text-white/80 group-hover:text-white transition-colors">
+                    {item.label}
                   </h3>
                 </div>
-
-                {/* Description & Features */}
-                <div className="md:w-3/6">
-                  <p className="text-[15px] font-light leading-relaxed text-white/50 group-hover:text-white/70 transition-colors max-w-lg mb-6">
-                    {item.description}
-                  </p>
-                  <ul className="flex flex-wrap gap-2">
-                    {item.features.map((f) => (
-                      <li key={f} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/50 transition-colors group-hover:bg-white/10 group-hover:text-white/70">
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -351,23 +380,18 @@ export default function ProcessPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 sm:py-32 mb-16 px-4">
+      <section className="py-24 sm:py-32 mb-16 px-4 border-t border-white/5">
         <div className="site-shell mx-auto max-w-4xl text-center">
-          <div className="hero-frame animate-frame-glow overflow-hidden border border-white/15 bg-gradient-to-b from-white/10 to-black p-12 sm:p-20 shadow-2xl relative rounded-3xl">
-            <div className="absolute inset-0 bg-grid-fade opacity-20 pointer-events-none" />
-            <div className="relative z-10">
-              <h2 className="text-4xl sm:text-5xl font-sans font-semibold tracking-tight text-white mb-6">
-                Vamos conversar
-                <br />
-                <span className="text-white/40">sobre o seu projeto?</span>
-              </h2>
-              <p className="mx-auto max-w-md text-base font-light leading-relaxed text-white/60 mb-10">
-                Após nosso papo inicial, você recebe uma proposta completa com escopo, cronograma e investimento.
-              </p>
-              <CtaLink href={CONTACT.whatsapp} variant="solid" size="md" className="px-10 py-5 text-sm uppercase tracking-widest shadow-xl" external>
-                Solicitar proposta
-              </CtaLink>
-            </div>
+          <h2 className="text-4xl sm:text-5xl font-sans font-semibold tracking-tight text-white mb-6 text-balance">
+            O próximo sistema da sua empresa pode começar hoje.
+          </h2>
+          <p className="mx-auto max-w-xl text-base font-light leading-relaxed text-white/60 mb-10 text-balance">
+            Solicite uma análise gratuita do seu projeto. Em até 24 horas você recebe um plano inicial com escopo, prazo e estimativa de investimento.
+          </p>
+          <div className="flex justify-center">
+            <CtaLink href={CONTACT.whatsapp} variant="solid" size="md" className="px-10 py-5 text-sm uppercase tracking-widest shadow-xl" external>
+              Solicitar análise gratuita
+            </CtaLink>
           </div>
         </div>
       </section>

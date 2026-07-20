@@ -7,8 +7,9 @@ export const CONTACT = {
   site: "thomaseduardo.com.br",
   github: "https://github.com/devthomaseduardo",
   linkedin: "https://www.linkedin.com/in/devthomaseduardo",
-  whatsapp:
+  whatsapp_real:
     "https://wa.me/5511977070209?text=Ol%C3%A1%20Thomas%2C%20quero%20falar%20sobre%20um%20projeto.",
+  whatsapp: "/whatsapp",
   cnpj: "60.882.678/0001-77",
 }
 

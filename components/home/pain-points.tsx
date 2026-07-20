@@ -8,26 +8,26 @@ const PAIN_POINTS = [
   {
     icon: TrendingDown,
     number: "01",
-    headline: "Sistemas legados que não escalam",
-    copy: "Seu produto digital está travado em tecnologias antigas, impedindo o crescimento e a inovação? Sistemas legados consomem recursos e limitam seu potencial de mercado.",
+    headline: "Você está perdendo vendas por lentidão",
+    copy: "Cada segundo que seu site ou sistema demora para carregar afasta o lead. Uma estrutura genérica ou pesada joga o orçamento da sua campanha direto no lixo e manda clientes para a concorrência.",
   },
   {
     icon: Clock,
     number: "02",
-    headline: "Projetos que atrasam e estouram o orçamento",
-    copy: "Cansado de projetos que prometem muito e entregam pouco, com prazos estourados e custos imprevisíveis? A falta de uma engenharia sólida custa caro.",
+    headline: "Projetos que viram um ralo de dinheiro",
+    copy: "A agência ou o dev freelancer promete para 30 dias e demora 6 meses. O código fica uma bagunça, o escopo estoura e você gasta o triplo do orçamento original para ter algo que mal funciona.",
   },
   {
     icon: AlertCircle,
     number: "03",
-    headline: "Ideias que não viram produto",
-    copy: "Tem uma visão clara para um novo produto, mas a execução técnica parece um labirinto? A ponte entre a ideia e um software de sucesso exige mais do que código: exige engenharia de produto.",
+    headline: "Sistemas que não escalam",
+    copy: "Sua operação cresceu, mas o seu sistema travou? Processos manuais e plataformas engessadas matam a sua produtividade diária. O seu gargalo não é a equipe, é a falta de tecnologia de verdade.",
   },
   {
     icon: ShieldAlert,
     number: "04",
-    headline: "Falta de confiança na entrega",
-    copy: "Seu time está sobrecarregado com bugs e manutenções constantes? Sistemas sem arquitetura clara geram dívida técnica e instabilidade, minando a confiança do usuário.",
+    headline: "O tráfego sobe, o site cai",
+    copy: "Basta lançar uma campanha forte para o site sair do ar ou os leads sumirem no meio do caminho. Falta de confiabilidade na infraestrutura destrói completamente o ROI da sua publicidade.",
   },
 ]
 
@@ -69,7 +69,7 @@ export function PainPoints() {
             transition={{ duration: 0.6 }}
             className="text-h2 font-normal text-foreground tracking-[-0.02em]"
           >
-            Você está perdendo tempo e dinheiro com...
+            Sua operação está perdendo tempo e dinheiro.
           </motion.h2>
         </div>
 
@@ -92,9 +92,7 @@ export function PainPoints() {
               >
                 {/* number + icon row */}
                 <div className="mb-5 flex items-center justify-between">
-                  <div className="flex size-10 items-center justify-center rounded-xl border border-white/8 bg-white/[0.04]">
-                    <Icon className="size-4 text-white/60" strokeWidth={1.5} />
-                  </div>
+                  <Icon className="size-6 text-white/70" strokeWidth={1.5} />
                   <span className="font-mono text-[10px] uppercase tracking-widest text-white/20">
                     {item.number}
                   </span>

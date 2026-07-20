@@ -27,10 +27,10 @@ export function PriceCalculator() {
     <div className="rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-xl p-7 sm:p-9 shadow-2xl">
       <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/55">Simulador</p>
       <h3 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground">
-        Estime o seu projeto
+        Quanto custa desenvolver um software?
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        Valor base de <span className="font-mono text-white/70">{BRL.format(RATE)}/hora</span>.
+        Não existe preço fixo. Cada projeto é analisado conforme: funcionalidades, integrações, complexidade, prazo e infraestrutura.
       </p>
 
       {/* PRESETS INTELIGENTES */}
@@ -94,11 +94,11 @@ export function PriceCalculator() {
         rel="noopener noreferrer"
         className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-neutral-900 to-black px-6 py-4 text-sm font-medium text-white/80 transition-all hover:scale-[1.02] hover:shadow-none"
       >
-        Solicitar orçamento com essa base
+        Solicitar uma análise gratuita
       </a>
       
       <p className="mt-4 text-center text-xs text-muted-foreground/60 leading-relaxed max-w-xs mx-auto">
-        Estimativa inicial - o valor final é fechado após alinharmos o escopo.
+        Você recebe um plano inicial sem compromisso.
       </p>
     </div>
   )

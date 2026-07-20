@@ -22,30 +22,30 @@ export function EngineeringApproach() {
       </motion.div>
 
       <div className="site-shell relative z-10">
-        <div className="mb-5 max-w-2xl sm:mb-10">
+        <div className="mb-8 max-w-3xl sm:mb-12">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="label-kicker mb-2 sm:mb-3"
+            className="label-kicker mb-2 sm:mb-3 text-white/40"
           >
-            Como eu trabalho
+            Sem surpresas durante o projeto
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-h2 font-normal text-foreground tracking-[-0.02em]"
+            className="text-h2 font-normal text-foreground tracking-[-0.02em] text-balance"
           >
-            Processo de trabalho.
+            Um processo transparente do primeiro contato até a entrega.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="copy-desktop mt-3 text-base font-light leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-4 text-base font-light leading-relaxed text-muted-foreground sm:text-lg"
           >
-            O mercado não perdoa amadorismo. Seu negócio precisa de tecnologia rápida, clara e que gere resultados imediatos. Sem enrolação técnica, foco no lucro.
+            Você acompanha cada etapa do desenvolvimento e sabe exatamente o que está sendo construído. Cronograma definido, escopo documentado, aprovação em cada etapa e código entregue ao final.
           </motion.p>
         </div>
 

@@ -32,14 +32,14 @@ export function HomeCta() {
           Próximo passo
         </motion.p>
 
-        <div className="mx-auto max-w-3xl font-sans text-center font-semibold leading-[1.05] tracking-[-0.03em] text-white" style={{ fontSize: "clamp(2rem, 7vw, 4.5rem)" }}>
-          <DepthParallaxWords triggerOnView delay={100} stagger={100}>
-            Pronto para
+        <div className="mx-auto max-w-4xl font-sans text-center font-semibold leading-[1.05] tracking-[-0.03em] text-white" style={{ fontSize: "clamp(1.5rem, 5vw, 3.5rem)" }}>
+          <DepthParallaxWords triggerOnView delay={100} stagger={80}>
+            O próximo sistema da
           </DepthParallaxWords>
           <br />
           <span className="text-white/40">
-            <DepthParallaxWords triggerOnView delay={400} stagger={80}>
-              escalar seu negócio?
+            <DepthParallaxWords triggerOnView delay={300} stagger={70}>
+              sua empresa pode começar hoje.
             </DepthParallaxWords>
           </span>
         </div>
@@ -48,9 +48,9 @@ export function HomeCta() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mx-auto mt-4 max-w-md text-sm font-light text-white/50 sm:mt-5 sm:text-base"
+          className="mx-auto mt-5 max-w-lg text-sm font-light text-white/60 sm:mt-6 sm:text-base leading-relaxed"
         >
-          Chega de perder leads para a concorrência por lentidão e design amador. Tenha uma presença digital premium, focada em fechar negócios.
+          Solicite uma análise gratuita do seu projeto. Em até 24 horas você recebe um plano inicial com escopo, prazo e estimativa de investimento.
         </motion.p>
 
         <motion.div
@@ -60,7 +60,7 @@ export function HomeCta() {
           className="mt-7 flex flex-col items-center justify-center gap-2.5 min-[420px]:flex-row sm:mt-8"
         >
           <CtaLink href={CONTACT.whatsapp} variant="solid" external>
-            Transformar minha ideia em produto
+            Solicitar análise gratuita
           </CtaLink>
           <CtaLink href="/projetos" variant="soft">
             Ver todos os projetos
